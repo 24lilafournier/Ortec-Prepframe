@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Guide de préparation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --page:#F5F1EA;
+  --surface:#FFFFFF;
+  --surface2:#FAF8F4;
+  --ink:#141210;
+  --muted:#6B6357;
+  --border:#E3DDD4;
+  --border2:#C8C0B4;
+
+  --forest:#1C3A14;
+  --forest2:#2D5E1E;
+  --forestSoft:#E8F0E3;
+  --forestLine:#4A7A35;
+
+  --ochre:#8A6510;
+  --ochreSoft:#F5EDD5;
+  --ochreLine:#D4B87A;
+
+  --red:#9B1C1C;
+  --redSoft:#F5E5E5;
+  --redLine:#DDB0B0;
+
+  --blue:#1A3FAA;
+  --blueSoft:#E8EDF8;
+  --blueLine:#8FA8D4;
+
+  --radius:4px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--page);
+  color:var(--ink);
+  font-family:'Figtree',ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.page{max-width:1120px;margin:0 auto;padding:22px 16px 72px}
+
+/* Header */
+.hero{
+  background:var(--forest);
+  color:#F5F1EA;
+  border-radius:var(--radius);
+  padding:42px 44px 34px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at 82% 24%,rgba(255,255,255,.08),transparent 42%);
+  pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1}
+.eyebrow{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(245,241,234,.55);
+  margin-bottom:18px;
+}
+.hero-title{
+  font-size:clamp(36px,5vw,58px);
+  font-weight:800;
+  line-height:1.03;
+  letter-spacing:-.04em;
+  max-width:760px;
+}
+.hero-sub{
+  margin-top:18px;
+  font-size:17px;
+  color:rgba(245,241,234,.68);
+  max-width:680px;
+}
+.hero-disclaimer{
+  margin-top:12px;
+  font-size:13px;
+  color:rgba(245,241,234,.45);
+  max-width:700px;
+}
+.hero-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
+.hero-pill{
+  background:transparent;
+  border:0;
+  border-left:2px solid rgba(245,241,234,.22);
+  color:rgba(245,241,234,.78);
+  border-radius:0;
+  padding:4px 0 4px 10px;
+  font-size:13px;
+}
+.progress-area{margin-top:28px;max-width:820px}
+.progress-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  font-size:12px;
+  color:rgba(245,241,234,.55);
+  margin-bottom:8px;
+}
+.progress-track{
+  height:1px;
+  background:rgba(255,255,255,.18);
+  border-radius:0;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:#9BC984;
+  transition:width .25s ease;
+}
+
+/* Generic */
+.section{margin-top:22px}
+.section-spaced{margin-top:36px}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:18px;
+  margin-bottom:14px;
+}
+h2{
+  font-size:28px;
+  line-height:1.1;
+  letter-spacing:-.03em;
+  font-weight:800;
+}
+.section-desc{font-size:13px;color:var(--muted);max-width:470px}
+.label{
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:800;
+  color:var(--forest);
+  margin-bottom:10px;
+}
+.label.red{color:var(--red)}
+p{font-size:14px;color:var(--muted);margin-bottom:10px}
+ul{padding-left:18px}
+li{font-size:14px;color:var(--muted);margin-bottom:8px}
+strong{color:inherit;font-weight:800}
+
+/* Top insights */
+.insights{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-top:20px;
+}
+.insight{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px 24px;
+}
+.insight .label::before{
+  content:"";
+  display:inline-block;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:currentColor;
+  margin-right:8px;
+  transform:translateY(-1px);
+}
+
+/* Urgent */
+.urgent{
+  background:var(--redSoft);
+  border:1px solid var(--redLine);
+  border-radius:var(--radius);
+  padding:24px 26px;
+}
+.urgent h2{color:var(--red);font-size:26px;margin-bottom:8px}
+.urgent p,.urgent li{color:#6F3333}
+.urgent .mini-script{
+  margin-top:16px;
+  border:1px solid var(--redLine);
+  border-radius:8px;
+  background:rgba(155,28,28,.06);
+  padding:14px 16px;
+}
+
+/* English kit */
+.english-kit{
+  background:var(--forestSoft);
+  border:1px solid var(--forestLine);
+  border-radius:var(--radius);
+  overflow:hidden;
+}
+.english-kit summary{
+  cursor:pointer;
+  list-style:none;
+  padding:20px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  color:var(--forest);
+  font-weight:800;
+  font-size:16px;
+}
+.english-kit summary::-webkit-details-marker{display:none}
+.kit-chevron{font-size:12px;color:var(--forest2)}
+.english-kit[open] .kit-chevron{transform:rotate(180deg)}
+.kit-body{
+  border-top:1px solid var(--forestLine);
+  padding:18px 24px 22px;
+}
+.kit-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.script{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-left:3px solid var(--forest);
+  border-radius:8px;
+  padding:13px 14px;
+  font-size:14px;
+  color:#2A241F;
+  margin-bottom:8px;
+}
+.script:last-child{margin-bottom:0}
+
+/* Parcours tabs */
+.tabs{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.tab{
+  appearance:none;
+  border:1px solid var(--border2);
+  background:var(--surface);
+  border-radius:4px;
+  padding:20px 18px 18px;
+  text-align:left;
+  min-height:138px;
+  color:var(--ink);
+}
+.tab:hover{border-color:var(--forestLine)}
+.tab.active{
+  background:var(--surface2);
+  border-color:var(--forest);
+  color:var(--ink);
+  box-shadow:inset 4px 0 0 var(--forest);
+}
+.tab-icon{
+  display:none;
+}
+.tab-title{
+  font-size:15px;
+  font-weight:800;
+  line-height:1.15;
+  margin-bottom:8px;
+  letter-spacing:.01em;
+}
+.tab p{
+  font-size:14px;
+  line-height:1.45;
+  color:var(--muted);
+  margin:0;
+}
+.tab.active p{
+  color:var(--muted);
+}
+
+/* Onboarding */
+.onboarding-prompt{
+  margin-top:20px;
+  background:var(--forestSoft);
+  border:1px solid var(--forestLine);
+  border-radius:var(--radius);
+  padding:28px 30px;
+}
+
+/* Path summary */
+.path-summary{
+  margin-top:14px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:24px 26px;
+  display:grid;
+  grid-template-columns:.82fr 1.55fr;
+  gap:28px;
+}
+.path-summary h3{
+  font-size:22px;
+  font-weight:800;
+  color:var(--forest);
+  margin-bottom:10px;
+}
+.path-list{
+  list-style:none;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  counter-reset:path-counter;
+}
+.path-list.round-list{grid-template-columns:repeat(3,minmax(0,1fr))}
+.path-list li{
+  margin:0;
+  counter-increment:path-counter;
+  display:flex;
+}
+.path-list li a{
+  width:100%;
+}
+.path-list a,
+.path-list a:link,
+.path-list a:visited,
+.path-list a:hover,
+.path-list a:active,
+.path-list a:focus{
+  min-height:44px;
+  background:var(--forestSoft);
+  border:1px solid var(--forestLine);
+  border-radius:8px;
+  padding:9px 12px;
+  color:var(--forest);
+  font-size:13.5px;
+  font-weight:750;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  cursor:pointer;
+}
+.path-list a:hover{background:#DFEBDC;border-color:var(--forest)}
+.path-list a::before{
+  content:counter(path-counter);
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  background:var(--forest);
+  color:white;
+  display:grid;
+  place-items:center;
+  font-size:11px;
+  font-weight:800;
+  flex:0 0 auto;
+}
+.path-list.round-list a{
+  min-height:58px;
+  justify-content:center;
+  font-size:15px;
+  text-align:center;
+}
+.path-list.round-list a::before{content:none;display:none}
+
+/* Quick filter */
+.filter-bar{
+  display:flex;
+  gap:8px;
+  margin-top:14px;
+  margin-bottom:4px;
+  flex-wrap:wrap;
+}
+.filt{
+  font:inherit;
+  font-size:11px;
+  font-weight:800;
+  padding:6px 10px;
+  border-radius:3px;
+  border:1px solid var(--border2);
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.filt.active{
+  background:var(--forest);
+  border-color:var(--forest);
+  color:#F5F1EA;
+}
+
+/* Cards */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:stretch;
+  gap:16px;
+  margin-top:18px;
+}
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:4px;
+  display:flex;
+  flex-direction:column;
+  min-height:unset;
+}
+.card.hidden{display:none}
+.card.read{
+  opacity:.72;
+  border-color:var(--forestLine);
+  background:var(--forestSoft);
+}
+.card.full,
+#rh-risk,#manager-risk,#final-risk,
+#rh-match,#manager-match,#final-match{
+  grid-column:1/-1;
+}
+.card-body{padding:20px 22px;display:flex;flex-direction:column;height:100%}
+.card-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  margin-bottom:12px;
+}
+.card:has(.check){cursor:pointer}
+.card:has(.check):hover{border-color:var(--forestLine)}
+.card h3{
+  font-size:21px;
+  line-height:1.18;
+  letter-spacing:-.02em;
+  font-weight:800;
+  margin-bottom:9px;
+}
+.badges{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}
+.badge{
+  font-size:9px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:800;
+  border:1px solid currentColor;
+  border-radius:2px;
+  padding:3px 6px;
+  line-height:1.1;
+  background:transparent!important;
+}
+.badge.essential{color:var(--forest);border-color:rgba(28,58,20,.42)}
+.badge.complementary{color:#3F587A;border-color:rgba(63,88,122,.38)}
+.badge.context{color:var(--muted);border-color:rgba(107,99,87,.35)}
+.badge.bonus{color:var(--ochre);border-color:rgba(138,101,16,.38)}
+.badge.rh{color:var(--ochre);border-color:rgba(138,101,16,.38)}
+.badge.manager{color:#3F587A;border-color:rgba(63,88,122,.38)}
+.badge.final{color:var(--muted);border-color:rgba(107,99,87,.35)}
+.badge.warning{color:var(--red);border-color:rgba(155,28,28,.38)}
+.check{
+  appearance:none;
+  width:22px;
+  height:22px;
+  border:1.5px solid var(--border2);
+  border-radius:50%;
+  background:transparent;
+  cursor:pointer;
+  flex:0 0 auto;
+}
+.check:checked,
+.card.read .check{
+  background:var(--forest);
+  border-color:var(--forest);
+  box-shadow:inset 0 0 0 4px #fff;
+}
+.card.warning-card{background:var(--redSoft);border-color:var(--redLine)}
+.card.warning-card h3{color:var(--red)}
+
+
+/* Editorial depth blocks — added for V2 */
+.card.editorial-card{
+  background:#FFFDF8;
+  border-color:var(--border2);
+}
+.card.perception-card{
+  background:var(--ochreSoft);
+  border-color:var(--ochreLine);
+}
+.card.scenario-card{
+  background:var(--surface2);
+  border-style:dashed;
+}
+.card.realjob-card{
+  background:var(--forestSoft);
+  border-color:rgba(74,122,53,.65);
+}
+.decode-block{
+  display:grid;
+  gap:12px;
+}
+.decode-row{
+  border-left:3px solid var(--forest);
+  padding-left:14px;
+}
+.perception-card .decode-row{border-left-color:var(--ochre)}
+.scenario-card .decode-row{border-left-color:var(--border2)}
+.realjob-card .decode-row{border-left-color:var(--forest)}
+.decode-kicker{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:3px;
+}
+.decode-text{
+  font-size:14px;
+  line-height:1.55;
+  color:var(--ink);
+}
+.decode-text.bad-answer{color:var(--red)}
+.decode-text.good-answer{color:var(--forest)}
+.decode-text.script-line{
+  font-style:italic;
+  color:var(--forest);
+}
+
+
+.round-separator{
+  grid-column:1/-1;
+  display:none;
+  margin-top:12px;
+  padding:14px 0 6px;
+  border-top:1px solid var(--border2);
+  color:var(--forest);
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:800;
+}
+body.show-all .round-separator{display:block}
+
+/* Requirement accordions */
+.exigence{
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+  margin-bottom:8px;
+}
+.exigence:last-child{margin-bottom:0}
+.exigence-summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:13px 16px;
+  cursor:pointer;
+  list-style:none;
+  font-weight:800;
+  font-size:14px;
+  color:var(--ink);
+  background:var(--surface2);
+  border:0;
+}
+.exigence-summary::-webkit-details-marker{display:none}
+.exigence[open] .exigence-summary{
+  border-bottom:1px solid var(--border);
+  background:var(--forestSoft);
+  color:var(--forest);
+}
+.exigence-chevron{
+  font-size:11px;
+  color:var(--muted);
+  flex-shrink:0;
+  transition:transform .15s ease;
+}
+.exigence[open] .exigence-chevron{
+  transform:rotate(180deg);
+  color:var(--forest);
+}
+.exigence-body{
+  padding:14px 16px;
+  display:grid;
+  gap:10px;
+}
+.exigence-row{
+  display:grid;
+  grid-template-columns:72px 1fr;
+  gap:8px;
+  align-items:start;
+  font-size:13px;
+}
+.exigence-key{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding-top:2px;
+}
+.exigence-val{color:var(--muted)}
+.exigence-oral{
+  background:var(--forestSoft);
+  border:1px solid var(--forestLine);
+  border-left:3px solid var(--forest);
+  border-radius:6px;
+  padding:10px 13px;
+  font-size:13px;
+  color:var(--forest);
+  font-style:italic;
+}
+.exigence-gap-none{color:var(--forest);font-weight:800}
+.exigence-gap-partial{color:var(--ochre);font-weight:800}
+.exigence-gap-real{color:var(--red);font-weight:800}
+
+/* STAR */
+.story{
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:14px 16px;
+  background:var(--surface2);
+  margin-bottom:12px;
+}
+.story:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.story h4{font-size:15px;color:var(--ink);margin-bottom:8px}
+.story p{margin-bottom:6px}
+.story:last-child{margin-bottom:0}
+
+/* Checklist */
+.checklist{list-style:none;padding-left:0}
+.checklist li{
+  display:flex;
+  gap:9px;
+  border-bottom:1px solid var(--border);
+  padding:8px 0;
+}
+.checklist input{margin-top:4px}
+
+/* Footer */
+.footer{
+  margin-top:42px;
+  padding-top:16px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:12px;
+}
+
+
+
+/* Production helpers */
+.empty-card{display:none!important}
+
+.entry-state{
+  margin-top:18px;
+  padding:34px 24px;
+  border:1px dashed var(--border2);
+  border-radius:4px;
+  background:rgba(255,255,255,.45);
+  text-align:center;
+}
+.entry-title{
+  font-size:18px;
+  font-weight:800;
+  color:var(--forest);
+  margin-bottom:6px;
+}
+.entry-subtitle{
+  max-width:520px;
+  margin:0 auto;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.pdf-export{margin-top:42px;display:flex;justify-content:center}
+.pdf-btn{background:var(--forest);color:#F5F1EA;border:0;border-radius:4px;padding:14px 22px;font-size:14px;font-weight:800;letter-spacing:.01em}
+.pdf-btn:hover{opacity:.92}
+.footer-meta{display:inline-block;margin-left:8px;color:var(--muted)}
+body.pdf-mode .tabs,body.pdf-mode .filter-bar,body.pdf-mode .check,body.pdf-mode .pdf-export,body.pdf-mode .entry-state{display:none!important}
+body.pdf-mode .page{max-width:1080px;padding:10px 10px 40px}
+body.pdf-mode .card,body.pdf-mode .insight,body.pdf-mode .urgent,body.pdf-mode .english-kit,body.pdf-mode .path-summary{break-inside:avoid;page-break-inside:avoid}
+body.pdf-mode .card.hidden:not(.empty-card){display:flex!important}
+body.pdf-mode .round-separator{display:block!important}
+
+@media(max-width:900px){
+  .hero{padding:30px 22px}
+  .insights,.tabs,.path-summary,.cards,.kit-grid,.notes-grid{grid-template-columns:1fr}
+  .path-list,.path-list.round-list{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .tabs{grid-template-columns:1fr}
+}
+@media print{
+  body{background:#fff}
+  .tabs,.check,.filter-bar,.json-zone{display:none}
+  .hero{background:#fff;color:#111;border:1px solid #ddd}
+  .hero-sub,.hero-disclaimer,.progress-row{color:#555}
+  .hero-pill{color:#333;border-color:#ccc}
+  .card,.insight,.urgent,.english-kit{break-inside:avoid}
+}
+</style>
+</head>
+
+<body>
+<!--
+TEMPLATE PREPFRAME
+1. Générer un objet JSON GUIDE_DATA à partir du brief candidat.
+2. Coller l'objet JSON dans le script ci-dessous à la place des valeurs vides.
+3. Ne jamais utiliser eval(). Le template injecte les champs via textContent et sanitize les listes.
+4. Registre : scripts/réponses orales à la première personne ; autres textes au vouvoiement ou neutres.
+-->
+
+<div class="page">
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Préparation à l’entretien d’embauche</div>
+    <h1 class="hero-title" data-field="hero.title">Guide de préparation à l’entretien</h1>
+    <p class="hero-sub" data-field="hero.subtitle"></p>
+    <p class="hero-disclaimer" data-field="hero.disclaimer"></p>
+    <div class="hero-meta">
+      <span class="hero-pill" data-field="meta.candidate"></span>
+      <span class="hero-pill" data-field="meta.role"></span>
+      <span class="hero-pill" data-field="meta.company"></span>
+    </div>
+    <div class="progress-area">
+      <div class="progress-row">
+        <span>Progression — <span id="activeLabel">Choisissez un type d'entretien pour commencer</span></span>
+        <span id="progressText">0 / 0 essentiels · 0 / 0 au total</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+  </div>
+</header>
+
+
+<section class="insights">
+  <div class="insight">
+    <div class="label">Priorités de préparation</div>
+    <ul data-list="priorities"></ul>
+  </div>
+  <div class="insight">
+    <div class="label red">Risques à anticiper</div>
+    <ul data-list="risks"></ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="urgent">
+    <div class="label red">Attention immédiate</div>
+    <h2>Avant l’entretien : vos 3 points non négociables</h2>
+    <p data-field="urgent.subtitle"></p>
+    <ul>
+      <li><strong>Positionnement :</strong> <span data-field="urgent.positioning"></span></li>
+      <li><strong>Preuve :</strong> <span data-field="urgent.proof"></span></li>
+      <li><strong>Piège :</strong> <span data-field="urgent.trap"></span></li>
+    </ul>
+    <div class="mini-script">
+      <p style="font-weight:800;color:var(--red);margin-bottom:8px;">▶ Mini-script mental</p>
+      <p data-field="urgent.miniScript"></p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <details class="english-kit">
+    <summary>
+      <span>🇬🇧 Préparation en anglais — à utiliser si l’entretien se déroule ou bascule en anglais</span>
+      <span class="kit-chevron">▾</span>
+    </summary>
+    <div class="kit-body">
+      <p><strong data-field="english.useCase"></strong></p>
+      <div class="kit-grid">
+        <div class="script" data-field="english.script1"></div>
+        <div class="script" data-field="english.script2"></div>
+      </div>
+    </div>
+  </details>
+</section>
+
+<section class="section-spaced">
+  
+<div class="section-head" style="display:block;">
+  <h2 style="margin-bottom:10px;white-space:nowrap;">Quel type d’entretien préparez-vous ?</h2>
+  <p class="section-desc" style="max-width:none;">Choisissez le type d’échange que vous préparez. Un RH, un manager ou un dirigeant peut intervenir à plusieurs moments du processus : le filtre sert à prioriser votre préparation.</p>
+</div>
+
+
+  <div class="tabs" role="tablist">
+    <button class="tab" data-filter="all">
+      <div class="tab-icon">🧭</div>
+      <div class="tab-title">Toutes les cartes</div>
+      <p>Affichez l’ensemble du guide, sans filtre ni priorisation.</p>
+    </button>
+    <button class="tab" data-filter="rh">
+      <div class="tab-icon">👤</div>
+      <div class="tab-title">RH</div>
+      <p>Préparez les questions liées à votre parcours, votre motivation et votre manière de communiquer. Ce type d'échange peut intervenir à n'importe quel stade du processus.</p>
+    </button>
+    <button class="tab" data-filter="manager">
+      <div class="tab-icon">🎯</div>
+      <div class="tab-title">Manager opérationnel</div>
+      <p>Préparez les situations métier, vos décisions concrètes et votre manière de travailler au quotidien.</p>
+    </button>
+    <button class="tab" data-filter="final">
+      <div class="tab-icon">👨‍💼</div>
+      <div class="tab-title">Final round</div>
+      <p>Préparez les échanges plus stratégiques : projection, impact attendu et maturité professionnelle.</p>
+    </button>
+  </div>
+  <div class="entry-state" id="entryState">
+    <p class="entry-title">Sélectionnez le type d’entretien que vous préparez</p>
+    <p class="entry-subtitle">Chaque type d'entretien a ses propres enjeux. Choisissez celui que vous préparez.</p>
+  </div>
+<div class="path-summary" style="display:none">
+    <div>
+      <h3 id="pathTitle"></h3>
+      <p id="pathText"></p>
+    </div>
+    <ol class="path-list" id="pathList"></ol>
+  </div>
+
+  <div id="filter-bar" class="filter-bar" style="display:none">
+    <button class="filt active" data-filt="all">Toutes</button>
+    <button class="filt" data-filt="essential">Essentiel</button>
+    <button class="filt" data-filt="complementary">Complémentaire</button>
+    <button class="filt" data-filt="bonus">Bonus</button>
+    <button class="filt" data-filt="context">Contexte</button>
+  </div>
+</section>
+
+<main class="cards" id="cards" style="display:none">
+  <div class="round-separator" data-sep="rh"><span>RH</span></div>
+
+  <article id="rh-risk" class="card warning-card" data-track="rh">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge rh">RH</span><span class="badge warning">Risque</span></div><h3>Point sensible de l'entretien</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <p><strong>Risque :</strong> <span data-field="paths.rh.risk.main"></span></p>
+      <p><strong>Réponse :</strong> <span data-field="paths.rh.risk.response"></span></p>
+    </div>
+  </article>
+
+  <article id="rh-company" class="card" data-track="rh" data-context="true">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge context">Contexte</span><span class="badge rh">RH</span></div><h3 data-field="paths.rh.company.title"></h3></div>
+      </div>
+      <ul data-list="paths.rh.company.points"></ul>
+    </div>
+  </article>
+
+  <article id="rh-eval" class="card" data-track="rh" data-context="true">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge context">Contexte</span><span class="badge rh">RH</span></div><h3>Ce que votre interlocuteur cherche à mesurer</h3></div>
+      </div>
+      <ul data-list="paths.rh.evaluation"></ul>
+    </div>
+  </article>
+
+
+  <article id="rh-realjob" class="card realjob-card" data-track="rh">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge rh">RH</span></div><h3>La réalité probable du poste</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-realjob="paths.rh.realJob"></div>
+    </div>
+  </article>
+
+  <article id="rh-hidden" class="card editorial-card" data-track="rh">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge rh">RH</span></div><h3>Ce qu’ils évaluent vraiment</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-hidden-eval="paths.rh.hiddenEvaluation"></div>
+    </div>
+  </article>
+
+  <article id="rh-perception" class="card perception-card" data-track="rh">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge warning">Perception</span></div><h3>Le doute à désamorcer</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-perception="paths.rh.perceptionRisks"></div>
+    </div>
+  </article>
+
+  <article id="rh-scenario" class="card scenario-card" data-track="rh">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge complementary">Simulation</span><span class="badge rh">RH</span></div><h3>Scénario d’entretien</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-scenario="paths.rh.scenario"></div>
+    </div>
+  </article>
+
+  <article id="rh-match" class="card full" data-track="rh">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge rh">RH</span></div><h3>Exigences du poste : vos preuves et réponses</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div class="exigences" data-requirements="paths.rh.requirements"></div>
+    </div>
+  </article>
+
+  <article id="rh-scripts" class="card" data-track="rh">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge rh">RH</span></div><h3>Scripts essentiels</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-scripts="paths.rh.scripts"></div>
+    </div>
+  </article>
+
+  <article id="rh-star" class="card" data-track="rh">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge complementary">Complémentaire</span><span class="badge rh">RH</span></div><h3>Récits STAR à construire</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <p>STAR = <strong>Situation</strong> : contexte ; <strong>Task</strong> : ce qu’on attendait de vous ; <strong>Action</strong> : ce que vous avez fait ; <strong>Result</strong> : résultat ou apprentissage.</p>
+      <div data-stars="paths.rh.stars"></div>
+    </div>
+  </article>
+
+  <article id="rh-questions" class="card" data-track="rh">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge complementary">Complémentaire</span><span class="badge rh">RH</span></div><h3>Questions à poser</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <ul data-list="paths.rh.questions"></ul>
+    </div>
+  </article>
+
+  <article id="rh-checklist" class="card" data-track="rh">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge bonus">Bonus</span><span class="badge rh">RH</span></div><h3>Checklist de préparation</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <ul class="checklist" data-checklist="paths.rh.checklist"></ul>
+    </div>
+  </article>
+
+  <div class="round-separator" data-sep="manager"><span>Manager opérationnel</span></div>
+
+  <article id="manager-risk" class="card warning-card" data-track="manager">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge manager">Manager</span><span class="badge warning">Risque</span></div><h3>Point sensible de l'entretien</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <p><strong>Risque :</strong> <span data-field="paths.manager.risk.main"></span></p>
+      <p><strong>Réponse :</strong> <span data-field="paths.manager.risk.response"></span></p>
+    </div>
+  </article>
+
+  <article id="manager-company" class="card" data-track="manager" data-context="true">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge context">Contexte</span><span class="badge manager">Manager</span></div><h3 data-field="paths.manager.company.title"></h3></div>
+      </div>
+      <ul data-list="paths.manager.company.points"></ul>
+    </div>
+  </article>
+
+  <article id="manager-eval" class="card" data-track="manager" data-context="true">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge context">Contexte</span><span class="badge manager">Manager</span></div><h3>Ce que votre interlocuteur cherche à mesurer</h3></div>
+      </div>
+      <ul data-list="paths.manager.evaluation"></ul>
+    </div>
+  </article>
+
+
+  <article id="manager-realjob" class="card realjob-card" data-track="manager">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge manager">Manager</span></div><h3>La réalité probable du poste</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-realjob="paths.manager.realJob"></div>
+    </div>
+  </article>
+
+  <article id="manager-hidden" class="card editorial-card" data-track="manager">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge manager">Manager</span></div><h3>Ce qu’ils évaluent vraiment</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-hidden-eval="paths.manager.hiddenEvaluation"></div>
+    </div>
+  </article>
+
+  <article id="manager-perception" class="card perception-card" data-track="manager">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge warning">Perception</span></div><h3>Le doute à désamorcer</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-perception="paths.manager.perceptionRisks"></div>
+    </div>
+  </article>
+
+  <article id="manager-scenario" class="card scenario-card" data-track="manager">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge complementary">Simulation</span><span class="badge manager">Manager</span></div><h3>Scénario d’entretien</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-scenario="paths.manager.scenario"></div>
+    </div>
+  </article>
+
+  <article id="manager-match" class="card full" data-track="manager">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge manager">Manager</span></div><h3>Exigences du poste : vos preuves et réponses</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div class="exigences" data-requirements="paths.manager.requirements"></div>
+    </div>
+  </article>
+
+  <article id="manager-scripts" class="card" data-track="manager">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge manager">Manager</span></div><h3>Scripts essentiels</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-scripts="paths.manager.scripts"></div>
+    </div>
+  </article>
+
+  <article id="manager-star" class="card" data-track="manager">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge complementary">Complémentaire</span><span class="badge manager">Manager</span></div><h3>Récits STAR à construire</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <p>Pour le manager, chaque STAR doit prouver une compétence métier : contexte, rôle exact, actions concrètes, résultat.</p>
+      <div data-stars="paths.manager.stars"></div>
+    </div>
+  </article>
+
+  <article id="manager-questions" class="card" data-track="manager">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge complementary">Complémentaire</span><span class="badge manager">Manager</span></div><h3>Questions à poser</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <ul data-list="paths.manager.questions"></ul>
+    </div>
+  </article>
+
+  <article id="manager-checklist" class="card" data-track="manager">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge bonus">Bonus</span><span class="badge manager">Manager</span></div><h3>Checklist de préparation</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <ul class="checklist" data-checklist="paths.manager.checklist"></ul>
+    </div>
+  </article>
+
+  <div class="round-separator" data-sep="final"><span>Final round</span></div>
+
+  <article id="final-risk" class="card warning-card" data-track="final">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge final">Final round</span><span class="badge warning">Risque</span></div><h3>Point sensible de l'entretien</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <p><strong>Risque :</strong> <span data-field="paths.final.risk.main"></span></p>
+      <p><strong>Réponse :</strong> <span data-field="paths.final.risk.response"></span></p>
+    </div>
+  </article>
+
+  <article id="final-company" class="card" data-track="final" data-context="true">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge context">Contexte</span><span class="badge final">Final round</span></div><h3 data-field="paths.final.company.title"></h3></div>
+      </div>
+      <ul data-list="paths.final.company.points"></ul>
+    </div>
+  </article>
+
+  <article id="final-eval" class="card" data-track="final" data-context="true">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge context">Contexte</span><span class="badge final">Final round</span></div><h3>Ce que votre interlocuteur cherche à mesurer</h3></div>
+      </div>
+      <ul data-list="paths.final.evaluation"></ul>
+    </div>
+  </article>
+
+
+  <article id="final-realjob" class="card realjob-card" data-track="final">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge final">Final round</span></div><h3>La réalité probable du poste</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-realjob="paths.final.realJob"></div>
+    </div>
+  </article>
+
+  <article id="final-hidden" class="card editorial-card" data-track="final">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge final">Final round</span></div><h3>Ce qu’ils évaluent vraiment</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-hidden-eval="paths.final.hiddenEvaluation"></div>
+    </div>
+  </article>
+
+  <article id="final-perception" class="card perception-card" data-track="final">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge warning">Perception</span></div><h3>Le doute à désamorcer</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-perception="paths.final.perceptionRisks"></div>
+    </div>
+  </article>
+
+  <article id="final-scenario" class="card scenario-card" data-track="final">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge complementary">Simulation</span><span class="badge final">Final round</span></div><h3>Scénario d’entretien</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-scenario="paths.final.scenario"></div>
+    </div>
+  </article>
+
+  <article id="final-match" class="card full" data-track="final">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge final">Final round</span></div><h3>Exigences du poste : vos preuves et réponses</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div class="exigences" data-requirements="paths.final.requirements"></div>
+    </div>
+  </article>
+
+  <article id="final-scripts" class="card" data-track="final">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge final">Final round</span></div><h3>Scripts essentiels</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-scripts="paths.final.scripts"></div>
+    </div>
+  </article>
+
+  <article id="final-star" class="card" data-track="final">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge complementary">Complémentaire</span><span class="badge final">Final round</span></div><h3>Récits STAR à construire</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <p>En final round, la STAR doit montrer l’impact, pas seulement l’exécution.</p>
+      <div data-stars="paths.final.stars"></div>
+    </div>
+  </article>
+
+  <article id="final-questions" class="card" data-track="final">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge complementary">Complémentaire</span><span class="badge final">Final round</span></div><h3>Questions à poser</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <ul data-list="paths.final.questions"></ul>
+    </div>
+  </article>
+
+  <article id="final-checklist" class="card" data-track="final">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge bonus">Bonus</span><span class="badge final">Final round</span></div><h3>Checklist de préparation</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <ul class="checklist" data-checklist="paths.final.checklist"></ul>
+    </div>
+  </article>
+</main>
+
+
+
+<div class="pdf-export"><button id="downloadPdfBtn" class="pdf-btn" type="button">Enregistrer votre guide en PDF</button></div>
+<div class="footer">Prepframe — Document privé, usage candidat exclusif. <span class="footer-meta">Généré le <span data-field="meta.generatedAt"></span></span></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRWYvU+Ou12ddflDHSJVY2CIW3+0V+FDutJQUGB8C89ep5T5BESgfD0JUx8D4Lr5s+OAH4oVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+/*
+  ==============================
+  ZONE JSON À REMPLIR — INVISIBLE CÔTÉ CANDIDAT
+  ==============================
+  Coller / remplacer ici l'objet GUIDE_DATA généré pour le candidat.
+  Ne pas ajouter de HTML dans les valeurs : injection via textContent uniquement.
+*/
+const GUIDE_DATA = {
+"hero": {
+"title": "Guide de préparation à l'entretien",
+"subtitle": "Ce guide privé vous accompagne pour valoriser vos compétences en contrôle interne et sécuriser votre recrutement chez Ortec.",
+"disclaimer": "Ce document repose sur l'analyse de la fiche de poste, du CV transmis et des informations disponibles publiquement. Il ne constitue pas une vérité établie : certains éléments sont des hypothèses de travail à confirmer directement en entretien."
+},
+"meta": {
+"version": "3.0.0",
+"generatedAt": "",
+"candidate": "Candidat : Lila Fournier",
+"role": "Poste : Comptable Contrôle Interne & Conformité H/F",
+"company": "Entreprise : Groupe Ortec"
+},
+"priorities": [
+"Valoriser votre expérience sur la loi Sapin II acquise chez Carrefour Belgique pour ce poste orienté compliance.",
+"Démontrer votre capacité à réaliser des contrôles comptables approfondis malgré un parcours principalement axé sur le risque de crédit.",
+"Expliquer votre motivation pour rejoindre le siège d'Ortec à Aix-en-Provence après votre VIE se terminant fin avril 2026."
+],
+"risks": [
+"Le recruteur peut craindre un manque d'expérience purement comptable, vos postes précédents étant très orientés analyse de crédit.",
+"Votre profil très bancaire et grande distribution peut sembler déconnecté des problématiques du secteur industriel d'Ortec.",
+"Le niveau en néerlandais A1 et l'anglais courant doivent être positionnés par rapport aux besoins du groupe international."
+],
+"urgent": {
+"subtitle": "Préparez votre transition de la banque vers le secteur industriel en mettant en avant vos compétences en compliance Sapin II.",
+"positioning": "Vous êtes une spécialiste du contrôle interne avec une solide culture financière, prête à sécuriser les processus d'Ortec.",
+"proof": "Votre pilotage de 7 missions de contrôle interne basées sur les risques et le référentiel COSO chez Carrefour.",
+"trap": "Ancrer chaque réponse sur un exemple concret tiré de votre expérience en gestion des risques et conformité réglementaire.",
+"miniScript": "Je mets mes 6 années d'expérience en finance et contrôle interne au service de la cellule Compliance d'Ortec pour sécuriser l'intégration des filiales acquises et garantir l'efficacité de nos contrôles de niveau 2."
+},
+"english": {
+"useCase": "To discuss internal control frameworks or exchange with international subsidiaries of the Ortec Group during audits.",
+"script1": "During my experience at Carrefour Belgium, I successfully managed internal control reviews based on the COSO framework and international standards.",
+"script2": "I am fully comfortable working in English, as I previously completed a university exchange in London during my finance degree."
+},
+"pathSummary": {
+"all": "Affichez l'ensemble du guide pour revoir les priorités, les risques, les scripts, les récits STAR et les questions à préparer.",
+"rh": "Élodie évalue votre cohérence de parcours, votre motivation pour le secteur industriel et votre intégration géographique à Aix-en-Provence.",
+"manager": "Aurélia et Michèle évaluent vos compétences techniques en contrôle de niveau 2, comptabilité, gestion documentaire et loi Sapin II.",
+"final": "Olivier évalue votre maturité business, votre capacité à présenter des conclusions claires et votre alignement avec la croissance du groupe."
+},
+"paths": {
+"rh": {
+"risk": {
+"main": "Crainte d'une instabilité géographique ou d'un défaut d'ancrage régional après un parcours entre Paris, Londres, le Canada et la Belgique.",
+"response": "Mon retour de VIE fin avril 2026 marque ma volonté de m'installer durablement à Aix-en-Provence et de m'investir sur le long terme."
+},
+"company": {
+"title": "Ce que vous devez savoir sur la politique RH d'Ortec",
+"points": [
+"Le groupe propose un parcours d'intégration personnalisé directement avec Aurélia, la Compliance Controller.",
+"Ortec valorise la mobilité interne, l'évolution professionnelle et possède son propre centre de formation.",
+"Le poste est basé au siège à Aix-les-Milles avec un accord de télétravail d'une journée par semaine."
+]
+},
+"evaluation": [
+"Votre motivation pour le secteur des services industriels.",
+"La cohérence de votre transition après votre VIE.",
+"Vos soft skills, notamment le bon relationnel et la rigueur."
+],
+"realJob": {
+"reality": "Le poste implique des contrôles de niveau 2 au siège à Aix-les-Milles sous la supervision directe d'Aurélia.",
+"constraint": "Le rythme demande une grande rigueur pour analyser la comptabilité (caisses, banques) et les processus non financiers.",
+"implication": "Vous devez démontrer votre autonomie rapide sur les outils informatiques et comptables dès votre intégration."
+},
+"hiddenEvaluation": {
+"question": "Pourquoi souhaitez-vous quitter le secteur bancaire et la grande distribution pour rejoindre un groupe industriel comme Ortec ?",
+"realTest": "Vérifier que ce choix est réfléchi et que vous comprenez les enjeux d'un siège social industriel.",
+"badAnswer": "Je cherche juste un nouveau poste après mon VIE en Belgique et l'offre d'Ortec m'a semblé intéressante.",
+"goodAnswer": "Je souhaite appliquer mes compétences en contrôle interne et Sapin II à un environnement industriel dynamique en pleine croissance externe, ce qui représente un excellent défi."
+},
+"perceptionRisks": {
+"risk": "Le recruteur peut penser que vous visez ce poste uniquement pour revenir en France.",
+"why": "Cela remet en cause votre engagement à long terme dans l'entreprise.",
+"fix": "*Mon projet de retour en France est mûri et s'accompagne d'une réelle volonté de rejoindre Ortec pour son excellence sectorielle.*"
+},
+"scenario": {
+"situation": "Le recruteur vous demande comment vous envisagez votre intégration au sein d'une équipe basée à Aix-en-Provence.",
+"badPosture": "Se montrer passif et attendre que l'entreprise gère toute l'intégration sans poser de questions logistiques.",
+"goodPosture": "Mettre en avant votre adaptabilité éprouvée lors de vos expériences internationales au Canada et en Belgique.",
+"line": "J'ai l'habitude de m'intégrer rapidement dans de nouveaux environnements grâce à mon ouverture d'esprit et ma curiosité."
+},
+"requirements": [
+{
+"requirement": "Formation Bac +3/5 en comptabilité/finance.",
+"proof": "Titulaire d'un Master Finance de l'Université Paris 1 Panthéon-Sorbonne obtenu en 2022.",
+"gap": "Aucun écart identifié.",
+"gapLevel": "none",
+"oralResponse": "Ma formation académique à la Sorbonne m'a apporté toutes les bases financières et comptables nécessaires pour ce poste."
+},
+{
+"requirement": "Compétences relationnelles et travail en équipe.",
+"proof": "Expérience de coordination de workshops inter-pays chez Carrefour et gestion de portefeuille clients chez HSBC.",
+"gap": "Aucun écart identifié.",
+"gapLevel": "none",
+"oralResponse": "Mon parcours en relation client et en animation de workshops prouve ma capacité à communiquer efficacement avec tout type d'interlocuteur."
+}
+],
+"scripts": [
+"De retour de mon Volontariat International en Entreprise au 30 avril 2026, je souhaite capitaliser sur mes six années d'expérience en finance pour rejoindre la cellule Compliance d'Ortec et accompagner sa dynamique de croissance.",
+"Mon adaptabilité, forgée par mes expériences à l'international, me permettra d'être rapidement opérationnelle et de m'intégrer harmonieusement au sein de l'équipe d'Aurélia au siège d'Aix-les-Milles."
+],
+"stars": [
+{
+"title": "Adaptabilité internationale en VIE",
+"situation": "Arrivée en Belgique chez Carrefour dans le cadre d'un Volontariat International en Entreprise.",
+"task": "Prendre en charge des missions de contrôle interne dans un nouveau contexte pays.",
+"action": "Je me suis approprié l'environnement local et j'ai collaboré à des workshops inter-pays.",
+"result": "Une intégration réussie et la gestion de 7 missions complexes (résultat à préciser en entretien)."
+}
+],
+"questions": [
+"Comment décririez-vous la culture d'entreprise au sein du siège social d'Ortec à Aix-les-Milles ?",
+"Quelles sont les prochaines étapes clés du parcours d'intégration prévu avec Aurélia ?",
+"Quels sont les profils des autres collaborateurs qui composent la cellule Compliance aujourd'hui ?"
+],
+"checklist": [
+"Relire la présentation générale du Groupe Ortec et ses 50 métiers.",
+"Valider vos arguments logistiques concernant votre installation à Aix-en-Provence.",
+"Préparer une explication claire sur la fin de votre VIE au 30 avril 2026."
+]
+},
+"manager": {
+"risk": {
+"main": "Doute sur votre capacité opérationnelle en comptabilité pure, vos expériences passées étant principalement axées sur les risques de crédit.",
+"response": "Mes contrôles chez Carrefour et mes fonctions d'analyse financière m'ont imposé une manipulation quotidienne et rigoureuse des états comptables."
+},
+"company": {
+"title": "Le contexte de la cellule Compliance chez Ortec",
+"points": [
+"La cellule renforce ses effectifs pour accompagner l'intégration de sociétés récemment acquises par le groupe.",
+"Les missions couvrent à la fois le contrôle interne financier, comptable et non financier (ligne d'alerte, conflits d'intérêts).",
+"La méthodologie de contrôle s'appuie sur le dispositif de la Loi Sapin 2 au sein de l'organisation."
+]
+},
+"evaluation": [
+"Votre maîtrise des techniques d'échantillonnage et de tests de contrôle.",
+"Votre autonomie sur les outils informatiques et SI (Excel, Power BI).",
+"Votre capacité à mettre à jour la gestion documentaire et les procédures."
+],
+"realJob": {
+"reality": "Le quotidien comprend la réalisation d'audits compliance de niveau 2 et la vérification des comptes caisses et banques.",
+"constraint": "Il faut assurer le suivi des plans de remédiation et la mise à jour documentaire de manière continue.",
+"implication": "Votre rigueur analytique doit se traduire par des livrables directement exploitables par la responsable de cellule."
+},
+"hiddenEvaluation": {
+"question": "Pouvez-vous m'expliquer comment vous réalisiez vos tests de contrôle et votre échantillonnage chez Carrefour ?",
+"realTest": "Évaluer votre rigueur méthodologique et votre maîtrise concrète du référentiel COSO sur le terrain.",
+"badAnswer": "Je choisissais quelques dossiers au hasard dans la base de données et je vérifiais si tout semblait correct visuellement.",
+"goodAnswer": "Chez Carrefour, je définissais mon échantillon selon une approche par les risques, puis j'exécutais les tests de contrôle conformément au référentiel COSO via des entretiens et l'analyse des pièces justificatives."
+},
+"perceptionRisks": {
+"risk": "La manager peut craindre que vous n'aimiez pas la partie administrative de gestion documentaire.",
+"why": "La mise à jour des procédures est essentielle pour la conformité de niveau 2.",
+"fix": "*La gestion documentaire fait partie intégrante de la robustesse du contrôle interne ; j'y accorde une importance méthodologique stricte.*"
+},
+"scenario": {
+"situation": "Vous identifiez une anomalie récurrente dans le contrôle des factures d'une société récemment acquise.",
+"badPosture": "Corriger l'erreur directement sans analyser l'origine du problème ni en informer la hiérarchie.",
+"goodPosture": "Réaliser une analyse des causes racines, formaliser l'écart et proposer une mise à jour de la procédure.",
+"line": "J'analyserai la cause racine de cette anomalie et je formulerai une recommandation pour adapter la procédure existante."
+},
+"requirements": [
+{
+"requirement": "2/4 ans d'expériences en comptabilité ou contrôle financier permettant une autonomie rapide.",
+"proof": "Six années d'expérience globale incluant du contrôle interne chez Carrefour et de l'analyse financière à la Société Générale.",
+"gap": "Parcours plus orienté contrôle interne et conformité que comptabilité pure.",
+"gapLevel": "partial",
+"oralResponse": "Mon expérience en contrôle interne m'a amenée à auditer des processus comptables complexes, ce qui me donne la grille de lecture nécessaire."
+},
+{
+"requirement": "Appétence forte pour la partie SI et maîtrise parfaite des outils informatiques.",
+"proof": "Utilisation validée d'Excel, Power BI et de Google Workspace dans vos compétences.",
+"gap": "Aucun écart identifié.",
+"gapLevel": "none",
+"oralResponse": "Je maîtrise parfaitement Excel et Power BI, des outils que j'utilisais quotidiennement pour suivre nos indicateurs de performance et de risque."
+}
+],
+"scripts": [
+"Chez Carrefour Belgique, j'ai piloté 7 missions de contrôle interne fondées sur les risques, en évaluant l'efficacité des contrôles selon le référentiel COSO et en atteignant un taux de mise en œuvre des remédiations de 80%.",
+"J'ai également contribué à la mise en œuvre de la loi Sapin II lors de workshops inter-pays, une expérience directement transposable aux besoins actuels de renforcement d'Ortec."
+],
+"stars": [
+{
+"title": "Pilotage de missions COSO",
+"situation": "Au sein de Carrefour Belgique, il fallait évaluer l'efficacité des contrôles sur 15 départements.",
+"task": "Piloter 7 missions de contrôle interne fondées sur les risques.",
+"action": "J'ai mené des entretiens, réalisé des tests de contrôle, de l'échantillonnage et coordonné les exercices de RCSA.",
+"result": "Identification des faiblesses opérationnelles et atteinte d'un taux de mise en œuvre des plans de remédiation de 80%."
+}
+],
+"questions": [
+"Quels sont les principaux chantiers de contrôle interne prévus suite aux récentes acquisitions du groupe Ortec ?",
+"Comment s'organise la coordination entre la cellule Compliance et les équipes comptables du siège ?",
+"Quels sont les outils SI ou logiciels comptables actuellement utilisés au sein de votre cellule ?"
+],
+"checklist": [
+"Revoir les grands principes de la Loi Sapin II et du référentiel COSO.",
+"Préparer deux exemples concrets de contrôle de processus financiers (caisses, banques ou factures).",
+"Anticiper des questions techniques sur la méthodologie de réalisation d'un exercice RCSA."
+]
+},
+"final": {
+"risk": {
+"main": "Crainte que votre vision soit trop centrée sur l'exécution technique et pas assez alignée sur la stratégie de croissance du Directeur Général Adjoint.",
+"response": "Mon rôle a toujours été de lier la conformité opérationnelle à la maîtrise globale des risques pour soutenir la performance de l'entreprise."
+},
+"company": {
+"title": "La stratégie de croissance externe du Groupe Ortec",
+"points": [
+"Le groupe intègre régulièrement de nouvelles sociétés, ce qui nécessite une harmonisation rapide des processus.",
+"Le poste exige de savoir présenter de manière synthétique des conclusions à la Direction Générale.",
+"La compliance est perçue comme un levier d'amélioration continue et d'excellence opérationnelle."
+]
+},
+"evaluation": [
+"Votre capacité de synthèse face à la Direction Générale.",
+"Votre sens des affaires et votre compréhension des risques industriels.",
+"Votre posture professionnelle et votre force de proposition."
+],
+"realJob": {
+"reality": "Le rôle requiert de présenter les conclusions des audits de niveau 2 directement à la Responsable Compliance et au DG.",
+"constraint": "Il faut savoir traduire des faiblesses techniques en risques business compréhensibles pour l'exécutif.",
+"implication": "Vous devez faire preuve d'un excellent esprit de synthèse et d'une grande maturité managériale."
+},
+"hiddenEvaluation": {
+"question": "Comment vous assurez-vous que vos recommandations de contrôle interne sont bien appliquées par les équipes opérationnelles ?",
+"realTest": "Mesurer votre leadership d'influence et votre capacité à faire accepter le changement.",
+"badAnswer": "Je leur envoie le rapport d'audit par mail et j'attends qu'ils reviennent vers moi quand ils ont terminé la mise en œuvre.",
+"goodAnswer": "Je privilégie la co-construction des plans de remédiation avec les opérationnels pour m'assurer de leur faisabilité, ce qui explique mon taux de réussite de 80% chez Carrefour."
+},
+"perceptionRisks": {
+"risk": "Le DGA peut craindre un manque d'assurance lors des présentations de conclusions stratégiques.",
+"why": "Les conclusions d'audits doivent être défendues avec clarté et conviction.",
+"fix": "*Mon expérience en gestion de portefeuille de 200 PME chez HSBC m'a habituée à interagir avec des dirigeants et à soutenir mes analyses.*"
+},
+"scenario": {
+"situation": "Lors de la présentation de vos conclusions, un Directeur de filiale conteste la sévérité de votre constat d'audit.",
+"badPosture": "Se braquer ou modifier le rapport pour éviter le conflit avec un membre de la direction.",
+"goodPosture": "S'appuyer de manière factuelle sur les tests de contrôle réalisés tout en restant ouverte au dialogue opérationnel.",
+"line": "Je m'appuierai sur les données factuelles de nos tests de contrôle pour expliquer le niveau de risque identifié."
+},
+"requirements": [
+{
+"requirement": "Présenter les conclusions à la Responsable de la cellule Compliance et au Directeur Général.",
+"proof": "Production de rapports d'analyse pour les comités de crédit à la Société Générale et formulation de recommandations chez Carrefour.",
+"gap": "Pas d'expérience directe de présentation en direct face à un Directeur Général de groupe industriel.",
+"gapLevel": "partial",
+"oralResponse": "J'ai l'habitude de formaliser des notes de synthèse claires pour des comités de crédit et des instances de gouvernance."
+},
+{
+"requirement": "Savoir être force de proposition pour l'amélioration continue.",
+"proof": "Contribution à l'amélioration des processus opérationnels et suivi d'indicateurs de performance chez Carrefour.",
+"gap": "Aucun écart identifié.",
+"gapLevel": "none",
+"oralResponse": "Pour moi, le contrôle interne n'est pas qu'une fonction de constatation, c'est un outil d'amélioration continue pour l'organisation."
+}
+],
+"scripts": [
+"Ma démarche consiste à positionner le contrôle interne comme un partenaire de la croissance d'Ortec, en veillant à ce que l'intégration des nouvelles filiales se fasse de manière sécurisée et fluide.",
+"Grâce à mon parcours combinant rigueur bancaire et pragmatisme de la grande distribution, je sais formuler des recommandations réalistes et génératrices de valeur pour la direction générale."
+],
+"stars": [
+{
+"title": "Dispositif de contrôle interne et KYC",
+"situation": "Chez HSBC France, gestion d'un portefeuille d'environ 200 PME (CA de 5M€ à 50M€).",
+"task": "Identifier et remonter les anomalies dans le cadre des trois lignes de défense.",
+"action": "J'ai réalisé des contrôles KYC, CDD et EDD complexes et refusé les dossiers hors seuils de risque.",
+"result": "Protection de la banque contre les risques de conformité réglementaire (résultat à préciser en entretien)."
+}
+],
+"questions": [
+"Quelles sont vos attentes prioritaires vis-à-vis de la cellule Compliance pour soutenir les ambitions de croissance du groupe ?",
+"Comment mesurez-vous l'impact du contrôle interne sur la performance globale des filiales d'Ortec ?",
+"Quels sont les principaux défis stratégiques auxquels le groupe fait face en matière de conformité non financière ?"
+],
+"checklist": [
+"Travailler votre posture managériale et votre fluidité verbale.",
+"Préparer une synthèse de 2 minutes de votre parcours axée sur la valeur ajoutée pour un dirigeant.",
+"Passer en revue les actualités récentes d'Ortec pour comprendre leurs axes de croissance."
+]
+}
+}
+};
+
+const tabs = document.querySelectorAll('.tab');
+const cards = document.querySelectorAll('.card[data-track]');
+const checks = document.querySelectorAll('.card[data-track] .check');
+const filts = document.querySelectorAll('.filt');
+
+const progressText = document.getElementById('progressText');
+const progressFill = document.getElementById('progressFill');
+const activeLabel = document.getElementById('activeLabel');
+const pathSummary = document.querySelector('.path-summary');
+const pathTitle = document.getElementById('pathTitle');
+const pathText = document.getElementById('pathText');
+const pathList = document.getElementById('pathList');
+const filterBar = document.getElementById('filter-bar');
+const entryState = document.getElementById('entryState');
+
+let current = null;
+let currentFilt = 'all';
+
+const pathCopy = {
+  all:{
+    title:'Toutes les cartes',
+    text:GUIDE_DATA.pathSummary.all,
+    items:[
+      ['#rh-risk','RH'],
+      ['#manager-risk','Manager opérationnel'],
+      ['#final-risk','Final round']
+    ]
+  },
+  rh:{
+    title:'Entretien RH',
+    text:GUIDE_DATA.pathSummary.rh,
+    items:[
+      ['#rh-risk','Point sensible de l’entretien'],
+      ['#rh-company',GUIDE_DATA.paths.rh.company.title],
+      ['#rh-eval','Ce que votre interlocuteur cherche à mesurer'],
+      ['#rh-realjob','La réalité probable du poste'],
+      ['#rh-hidden','Ce qu’ils évaluent vraiment'],
+      ['#rh-perception','Le doute à désamorcer'],
+      ['#rh-scenario','Scénario d’entretien'],
+      ['#rh-match','Exigences du poste : vos preuves et réponses'],
+      ['#rh-scripts','Scripts essentiels'],
+      ['#rh-star','Récits STAR à construire'],
+      ['#rh-questions','Questions à poser'],
+      ['#rh-checklist','Checklist de préparation']
+    ]
+  },
+  manager:{
+    title:'Entretien Manager',
+    text:GUIDE_DATA.pathSummary.manager,
+    items:[
+      ['#manager-risk','Point sensible de l’entretien'],
+      ['#manager-company',GUIDE_DATA.paths.manager.company.title],
+      ['#manager-eval','Ce que votre interlocuteur cherche à mesurer'],
+      ['#manager-realjob','La réalité probable du poste'],
+      ['#manager-hidden','Ce qu’ils évaluent vraiment'],
+      ['#manager-perception','Le doute à désamorcer'],
+      ['#manager-scenario','Scénario d’entretien'],
+      ['#manager-match','Exigences du poste : vos preuves et réponses'],
+      ['#manager-scripts','Scripts essentiels'],
+      ['#manager-star','Récits STAR à construire'],
+      ['#manager-questions','Questions à poser'],
+      ['#manager-checklist','Checklist de préparation']
+    ]
+  },
+  final:{
+    title:'Final round',
+    text:GUIDE_DATA.pathSummary.final,
+    items:[
+      ['#final-risk','Point sensible de l’entretien'],
+      ['#final-company',GUIDE_DATA.paths.final.company.title],
+      ['#final-eval','Ce que votre interlocuteur cherche à mesurer'],
+      ['#final-realjob','La réalité probable du poste'],
+      ['#final-hidden','Ce qu’ils évaluent vraiment'],
+      ['#final-perception','Le doute à désamorcer'],
+      ['#final-scenario','Scénario d’entretien'],
+      ['#final-match','Exigences du poste : vos preuves et réponses'],
+      ['#final-scripts','Scripts essentiels'],
+      ['#final-star','Récits STAR à construire'],
+      ['#final-questions','Questions à poser'],
+      ['#final-checklist','Checklist de préparation']
+    ]
+  }
+};
+
+function getValue(path){
+  return path.split('.').reduce((acc,key)=>acc && acc[key], GUIDE_DATA) ?? '';
+}
+
+function isPlaceholder(value){
+  return typeof value === 'string' && /\{\{[^}]+\}\}/.test(value);
+}
+
+function safeText(value){
+  if(value === null || value === undefined) return '';
+  if(typeof value !== 'string') return value;
+  const cleaned = value.trim();
+  if(!cleaned || isPlaceholder(cleaned)) return '';
+  return cleaned;
+}
+
+function safeArray(items){
+  return (items || []).map(safeText).filter(Boolean);
+}
+
+function setText(selector, value){
+  document.querySelectorAll(selector).forEach(el=>{el.textContent = safeText(value);});
+}
+
+function renderList(selector, items){
+  document.querySelectorAll(selector).forEach(list=>{
+    list.textContent = '';
+    safeArray(items).forEach(item=>{
+      const li = document.createElement('li');
+      li.textContent = item;
+      list.appendChild(li);
+    });
+  });
+}
+
+function renderChecklist(selector, items){
+  document.querySelectorAll(selector).forEach(list=>{
+    list.textContent = '';
+    safeArray(items).forEach(item=>{
+      const li = document.createElement('li');
+      const box = document.createElement('input');
+      box.type = 'checkbox';
+      li.appendChild(box);
+      li.appendChild(document.createTextNode(' ' + item));
+      list.appendChild(li);
+    });
+  });
+}
+
+function renderScripts(selector, scripts){
+  document.querySelectorAll(selector).forEach(container=>{
+    container.textContent = '';
+    safeArray(scripts).forEach(script=>{
+      const div = document.createElement('div');
+      div.className = 'script';
+      div.textContent = '“' + script + '”';
+      container.appendChild(div);
+    });
+  });
+}
+
+function renderStars(selector, stars){
+  document.querySelectorAll(selector).forEach(container=>{
+    container.textContent = '';
+    (stars || []).filter(Boolean).forEach((star,index)=>{
+      const titleValue = safeText(star.title);
+      const lines = ['situation','task','action','result'].map(key=>[key, safeText(star[key])]).filter(([,val])=>val);
+      if(!titleValue && !lines.length) return;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'story';
+      const title = document.createElement('h4');
+      title.textContent = `${index + 1}. ${titleValue || 'Récit à construire'}`;
+      wrapper.appendChild(title);
+      lines.forEach(([key,val])=>{
+        const p = document.createElement('p');
+        const strong = document.createElement('strong');
+        strong.textContent = key.charAt(0).toUpperCase() + key.slice(1) + '.';
+        p.appendChild(strong);
+        p.appendChild(document.createTextNode(' ' + val));
+        wrapper.appendChild(p);
+      });
+      container.appendChild(wrapper);
+    });
+  });
+}
+
+function renderDecodeRows(container, rows){
+  container.textContent = '';
+  const wrapper = document.createElement('div');
+  wrapper.className = 'decode-block';
+  rows.map(row=>({...row, value:safeText(row.value)})).filter(row=>row.value).forEach(row=>{
+    const item = document.createElement('div');
+    item.className = 'decode-row';
+    const kicker = document.createElement('div');
+    kicker.className = 'decode-kicker';
+    kicker.textContent = row.label;
+    const text = document.createElement('div');
+    text.className = 'decode-text' + (row.className ? ' ' + row.className : '');
+    text.textContent = row.value;
+    item.appendChild(kicker);
+    item.appendChild(text);
+    wrapper.appendChild(item);
+  });
+  container.appendChild(wrapper);
+}
+
+function renderRealJob(selector, data){
+  document.querySelectorAll(selector).forEach(container=>{
+    if(!data) return;
+    renderDecodeRows(container, [
+      {label:'Réalité probable', value:data.reality},
+      {label:'Contrainte terrain', value:data.constraint},
+      {label:'Ce que cela implique pour vous', value:data.implication}
+    ]);
+  });
+}
+
+function renderHiddenEvaluation(selector, data){
+  document.querySelectorAll(selector).forEach(container=>{
+    if(!data) return;
+    renderDecodeRows(container, [
+      {label:'Question probable', value:data.question},
+      {label:'Ce qu’ils testent vraiment', value:data.realTest},
+      {label:'Mauvaise réponse typique', value:data.badAnswer, className:'bad-answer'},
+      {label:'Réponse crédible', value:data.goodAnswer, className:'good-answer'}
+    ]);
+  });
+}
+
+function renderPerception(selector, data){
+  document.querySelectorAll(selector).forEach(container=>{
+    if(!data) return;
+    renderDecodeRows(container, [
+      {label:'Doute possible', value:data.risk},
+      {label:'Pourquoi c’est dangereux', value:data.why},
+      {label:'Correction orale', value:data.fix, className:'script-line'}
+    ]);
+  });
+}
+
+function renderScenario(selector, data){
+  document.querySelectorAll(selector).forEach(container=>{
+    if(!data) return;
+    renderDecodeRows(container, [
+      {label:'Situation', value:data.situation},
+      {label:'Mauvaise posture', value:data.badPosture, className:'bad-answer'},
+      {label:'Bonne posture', value:data.goodPosture, className:'good-answer'},
+      {label:'Phrase à utiliser', value:data.line, className:'script-line'}
+    ]);
+  });
+}
+
+function renderRequirements(selector, requirements){
+  document.querySelectorAll(selector).forEach(container=>{
+    container.textContent = '';
+    (requirements || []).filter(Boolean).forEach((req,index)=>{
+      const requirement = safeText(req.requirement);
+      const proof = safeText(req.proof);
+      const gap = safeText(req.gap);
+      const oralResponse = safeText(req.oralResponse);
+      if(!requirement && !proof && !gap && !oralResponse) return;
+      const details = document.createElement('details');
+      details.className = 'exigence';
+      if(index === 0) details.open = true;
+      const summary = document.createElement('summary');
+      summary.className = 'exigence-summary';
+      const reqTitle = document.createElement('span');
+      reqTitle.textContent = requirement || 'Exigence à préciser';
+      const chevron = document.createElement('span');
+      chevron.className = 'exigence-chevron';
+      chevron.textContent = '▾';
+      summary.appendChild(reqTitle);
+      summary.appendChild(chevron);
+      const body = document.createElement('div');
+      body.className = 'exigence-body';
+      [['Preuve', proof], ['Gap', gap, req.gapLevel || 'partial']].filter(([,val])=>val).forEach(([key,val,level])=>{
+        const row = document.createElement('div');
+        row.className = 'exigence-row';
+        const k = document.createElement('div');
+        k.className = 'exigence-key';
+        k.textContent = key;
+        const v = document.createElement('div');
+        v.className = 'exigence-val';
+        if(key === 'Gap'){
+          const span = document.createElement('span');
+          span.className = `exigence-gap-${level}`;
+          span.textContent = val;
+          v.appendChild(span);
+        } else {
+          v.textContent = val;
+        }
+        row.appendChild(k);
+        row.appendChild(v);
+        body.appendChild(row);
+      });
+      if(oralResponse){
+        const oral = document.createElement('div');
+        oral.className = 'exigence-oral';
+        oral.textContent = '“' + oralResponse + '”';
+        body.appendChild(oral);
+      }
+      details.appendChild(summary);
+      details.appendChild(body);
+      container.appendChild(details);
+    });
+  });
+}
+
+function dynamicContentFor(card){
+  const dynamicSelectors = '[data-field], [data-list], [data-checklist], [data-scripts], [data-stars], [data-requirements], [data-realjob], [data-hidden-eval], [data-perception], [data-scenario]';
+  return Array.from(card.querySelectorAll(dynamicSelectors)).map(el=>el.textContent.replace(/\s+/g,' ').trim()).filter(Boolean).join(' ');
+}
+
+function markEmptyCards(){
+  document.querySelectorAll('.card[data-track]').forEach(card=>{
+    const content = dynamicContentFor(card);
+    if(content.length < 3) card.classList.add('empty-card','hidden');
+  });
+}
+
+function hydrate(){
+  document.querySelectorAll('[data-field]').forEach(el=>{
+    el.textContent = safeText(getValue(el.dataset.field));
+  });
+
+  renderList('[data-list="priorities"]', GUIDE_DATA.priorities);
+  renderList('[data-list="risks"]', GUIDE_DATA.risks);
+
+  ['rh','manager','final'].forEach(path=>{
+    renderList(`[data-list="paths.${path}.company.points"]`, GUIDE_DATA.paths[path].company.points);
+    renderList(`[data-list="paths.${path}.evaluation"]`, GUIDE_DATA.paths[path].evaluation);
+    renderRealJob(`[data-realjob="paths.${path}.realJob"]`, GUIDE_DATA.paths[path].realJob);
+    renderHiddenEvaluation(`[data-hidden-eval="paths.${path}.hiddenEvaluation"]`, GUIDE_DATA.paths[path].hiddenEvaluation);
+    renderPerception(`[data-perception="paths.${path}.perceptionRisks"]`, GUIDE_DATA.paths[path].perceptionRisks);
+    renderScenario(`[data-scenario="paths.${path}.scenario"]`, GUIDE_DATA.paths[path].scenario);
+    renderRequirements(`[data-requirements="paths.${path}.requirements"]`, GUIDE_DATA.paths[path].requirements);
+    renderScripts(`[data-scripts="paths.${path}.scripts"]`, GUIDE_DATA.paths[path].scripts);
+    renderStars(`[data-stars="paths.${path}.stars"]`, GUIDE_DATA.paths[path].stars);
+    renderList(`[data-list="paths.${path}.questions"]`, GUIDE_DATA.paths[path].questions);
+    renderChecklist(`[data-checklist="paths.${path}.checklist"]`, GUIDE_DATA.paths[path].checklist);
+  });
+}
+
+function visibleCards(){
+  return Array.from(cards).filter(card=>
+    (current === 'all' || card.dataset.track === current) &&
+    !card.classList.contains('hidden') &&
+    !card.classList.contains('empty-card') &&
+    !card.dataset.context
+  );
+}
+
+function applyFilt(){
+  if(current === null){
+    updateProgress();
+    return;
+  }
+
+  cards.forEach(card=>{
+    if(card.classList.contains('empty-card')){
+      card.classList.add('hidden');
+      return;
+    }
+    const inTrack = current === 'all' || card.dataset.track === current;
+    if(!inTrack){
+      card.classList.add('hidden');
+      return;
+    }
+
+    if(currentFilt === 'all'){
+      card.classList.remove('hidden');
+      return;
+    }
+
+    const hasLevel = card.querySelector(`.badge.${currentFilt}`);
+    card.classList.toggle('hidden', !hasLevel);
+  });
+
+  updateProgress();
+}
+
+function updateProgress(){
+  const visible = visibleCards();
+  const read = visible.filter(card=>{
+    const check = card.querySelector('.check');
+    return check && check.checked;
+  }).length;
+  const total = visible.length;
+
+  const essentialVisible = Array.from(cards).filter(card=>
+    (current === 'all' || card.dataset.track === current) &&
+    !card.classList.contains('empty-card') &&
+    !card.dataset.context &&
+    card.querySelector('.badge.essential')
+  );
+  const essentialRead = essentialVisible.filter(card=>{
+    const check = card.querySelector('.check');
+    return check && check.checked;
+  }).length;
+  const essentialTotal = essentialVisible.length;
+
+  progressText.textContent = `${essentialRead} / ${essentialTotal} essentiels · ${read} / ${total} au total`;
+  progressFill.style.width = essentialTotal ? `${Math.round((essentialRead / essentialTotal) * 100)}%` : '0%';
+
+  cards.forEach(card=>{
+    const check = card.querySelector('.check');
+    card.classList.toggle('read', !!(check && check.checked));
+  });
+}
+
+function getPathItems(filter){
+  if(filter === 'all'){
+    return [['#rh-risk','RH'], ['#manager-risk','Manager opérationnel'], ['#final-risk','Final round']];
+  }
+  return Array.from(document.querySelectorAll(`.card[data-track="${filter}"]`))
+    .filter(card=>!card.classList.contains('empty-card'))
+    .map(card=>[`#${card.id}`, card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : 'Section'])
+    .filter(([,label])=>label);
+}
+
+function updateSummary(filter){
+  if(filter === null) return;
+  const data = pathCopy[filter];
+  pathTitle.textContent = safeText(data.title);
+  pathText.textContent = safeText(data.text);
+  pathList.classList.toggle('round-list', filter === 'all');
+  pathList.textContent = '';
+  getPathItems(filter).forEach(([href,label])=>{
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = href;
+    a.textContent = label;
+    li.appendChild(a);
+    pathList.appendChild(li);
+  });
+}
+
+function setFilter(filter){
+  current = filter;
+  document.body.classList.toggle('show-all', filter === 'all');
+  tabs.forEach(tab=>tab.classList.toggle('active', filter !== null && tab.dataset.filter === filter));
+
+  if(filter === null){
+    cards.forEach(card=>card.classList.add('hidden'));
+    if(pathSummary) pathSummary.style.display = 'none';
+    if(filterBar) filterBar.style.display = 'none';
+    document.getElementById('cards').style.display = 'none';
+    if(entryState) entryState.style.display = 'block';
+    activeLabel.textContent = "Choisissez un type d'entretien pour commencer";
+    updateProgress();
+    return;
+  }
+
+  if(entryState) entryState.style.display = 'none';
+  if(pathSummary) pathSummary.style.display = 'grid';
+  if(filterBar) filterBar.style.display = 'flex';
+    document.getElementById('cards').style.display = '';
+
+  cards.forEach(card=>{
+    const show = !card.classList.contains('empty-card') && (filter === 'all' || card.dataset.track === filter);
+    card.classList.toggle('hidden', !show);
+  });
+
+  activeLabel.textContent = pathCopy[filter].title;
+  updateSummary(filter);
+  applyFilt();
+}
+
+tabs.forEach(tab=>tab.addEventListener('click',()=>setFilter(tab.dataset.filter)));
+
+filts.forEach(f=>f.addEventListener('click',()=>{
+  currentFilt = f.dataset.filt;
+  filts.forEach(btn=>btn.classList.remove('active'));
+  f.classList.add('active');
+  applyFilt();
+}));
+
+checks.forEach(check=>check.addEventListener('change',updateProgress));
+
+cards.forEach(card=>{
+  const check = card.querySelector('.check');
+  if(!check) return;
+
+  card.addEventListener('click',event=>{
+    if(event.target.closest('a,button,input,textarea,summary,details,label')) return;
+    check.checked = !check.checked;
+    updateProgress();
+  });
+});
+
+
+function initNotesPersistence(){
+  document.querySelectorAll('textarea').forEach(field=>{
+    const key = `prepframe-note-${field.id}`;
+    const saved = localStorage.getItem(key);
+    if(saved) field.value = saved;
+    field.addEventListener('input',()=>localStorage.setItem(key, field.value));
+  });
+}
+
+function initPdfExport(){
+  const pdfBtn = document.getElementById('downloadPdfBtn');
+  if(!pdfBtn) return;
+  pdfBtn.addEventListener('click', async ()=>{
+    setFilter('all');
+    document.querySelectorAll('details').forEach(detail=>{ detail.open = true; });
+    document.body.classList.add('pdf-mode');
+    const element = document.querySelector('.page');
+    const filenameParts = [safeText(GUIDE_DATA.meta.company), safeText(GUIDE_DATA.meta.role)].filter(Boolean).join(' - ').replace(/[\/:*?"<>|]/g,'') || 'prepframe-guide';
+    const opt = { margin:0.35, filename:'Guide-de-preparation.pdf', image:{type:'jpeg',quality:0.98}, html2canvas:{scale:2,useCORS:true,backgroundColor:'#F5F1EA'}, jsPDF:{unit:'in',format:'a4',orientation:'portrait'}, pagebreak:{mode:['avoid-all','css','legacy']} };
+    try{
+      if(window.html2pdf) await html2pdf().set(opt).from(element).save();
+      else window.print();
+    } finally {
+      document.body.classList.remove('pdf-mode');
+    }
+  });
+}
+
+hydrate();
+markEmptyCards();
+initNotesPersistence();
+initPdfExport();
+setFilter(null);
+</script>
+</body>
+</html>
