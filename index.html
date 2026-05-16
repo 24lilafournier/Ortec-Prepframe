@@ -1,9 +1,12 @@
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prepframe — Template candidat</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Guide de préparation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
 <style>
 :root{
@@ -320,6 +323,10 @@ strong{color:inherit;font-weight:800}
 .path-list li{
   margin:0;
   counter-increment:path-counter;
+  display:flex;
+}
+.path-list li a{
+  width:100%;
 }
 .path-list a,
 .path-list a:link,
@@ -473,6 +480,56 @@ strong{color:inherit;font-weight:800}
 .card.warning-card{background:var(--redSoft);border-color:var(--redLine)}
 .card.warning-card h3{color:var(--red)}
 
+
+/* Editorial depth blocks — added for V2 */
+.card.editorial-card{
+  background:#FFFDF8;
+  border-color:var(--border2);
+}
+.card.perception-card{
+  background:var(--ochreSoft);
+  border-color:var(--ochreLine);
+}
+.card.scenario-card{
+  background:var(--surface2);
+  border-style:dashed;
+}
+.card.realjob-card{
+  background:var(--forestSoft);
+  border-color:rgba(74,122,53,.65);
+}
+.decode-block{
+  display:grid;
+  gap:12px;
+}
+.decode-row{
+  border-left:3px solid var(--forest);
+  padding-left:14px;
+}
+.perception-card .decode-row{border-left-color:var(--ochre)}
+.scenario-card .decode-row{border-left-color:var(--border2)}
+.realjob-card .decode-row{border-left-color:var(--forest)}
+.decode-kicker{
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:3px;
+}
+.decode-text{
+  font-size:14px;
+  line-height:1.55;
+  color:var(--ink);
+}
+.decode-text.bad-answer{color:var(--red)}
+.decode-text.good-answer{color:var(--forest)}
+.decode-text.script-line{
+  font-style:italic;
+  color:var(--forest);
+}
+
+
 .round-separator{
   grid-column:1/-1;
   display:none;
@@ -583,36 +640,6 @@ body.show-all .round-separator{display:block}
 }
 .checklist input{margin-top:4px}
 
-/* Notes */
-.notes{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:24px;
-}
-.notes-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
-}
-.note-field.full{grid-column:1/-1}
-.note-field label{
-  display:block;
-  font-weight:800;
-  margin-bottom:8px;
-}
-.note-field textarea{
-  width:100%;
-  min-height:110px;
-  resize:vertical;
-  border:1px solid var(--border);
-  border-radius:8px;
-  background:var(--surface2);
-  padding:12px;
-  color:var(--ink);
-}
-.note-field.full textarea{min-height:140px}
-
 /* Footer */
 .footer{
   margin-top:42px;
@@ -621,6 +648,42 @@ body.show-all .round-separator{display:block}
   color:var(--muted);
   font-size:12px;
 }
+
+
+
+/* Production helpers */
+.empty-card{display:none!important}
+
+.entry-state{
+  margin-top:18px;
+  padding:34px 24px;
+  border:1px dashed var(--border2);
+  border-radius:4px;
+  background:rgba(255,255,255,.45);
+  text-align:center;
+}
+.entry-title{
+  font-size:18px;
+  font-weight:800;
+  color:var(--forest);
+  margin-bottom:6px;
+}
+.entry-subtitle{
+  max-width:520px;
+  margin:0 auto;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.pdf-export{margin-top:42px;display:flex;justify-content:center}
+.pdf-btn{background:var(--forest);color:#F5F1EA;border:0;border-radius:4px;padding:14px 22px;font-size:14px;font-weight:800;letter-spacing:.01em}
+.pdf-btn:hover{opacity:.92}
+.footer-meta{display:inline-block;margin-left:8px;color:var(--muted)}
+body.pdf-mode .tabs,body.pdf-mode .filter-bar,body.pdf-mode .check,body.pdf-mode .pdf-export,body.pdf-mode .entry-state{display:none!important}
+body.pdf-mode .page{max-width:1080px;padding:10px 10px 40px}
+body.pdf-mode .card,body.pdf-mode .insight,body.pdf-mode .urgent,body.pdf-mode .english-kit,body.pdf-mode .path-summary{break-inside:avoid;page-break-inside:avoid}
+body.pdf-mode .card.hidden:not(.empty-card){display:flex!important}
+body.pdf-mode .round-separator{display:block!important}
 
 @media(max-width:900px){
   .hero{padding:30px 22px}
@@ -636,12 +699,12 @@ body.show-all .round-separator{display:block}
   .hero{background:#fff;color:#111;border:1px solid #ddd}
   .hero-sub,.hero-disclaimer,.progress-row{color:#555}
   .hero-pill{color:#333;border-color:#ccc}
-  .card,.insight,.urgent,.english-kit,.notes{break-inside:avoid}
+  .card,.insight,.urgent,.english-kit{break-inside:avoid}
 }
 </style>
+</head>
 
-
-
+<body>
 <!--
 TEMPLATE PREPFRAME
 1. Générer un objet JSON GUIDE_DATA à partir du brief candidat.
@@ -665,7 +728,7 @@ TEMPLATE PREPFRAME
     </div>
     <div class="progress-area">
       <div class="progress-row">
-        <span>Progression — <span id="activeLabel">Aucun parcours sélectionné</span></span>
+        <span>Progression — <span id="activeLabel">Choisissez un type d'entretien pour commencer</span></span>
         <span id="progressText">0 / 0 essentiels · 0 / 0 au total</span>
       </div>
       <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
@@ -688,7 +751,7 @@ TEMPLATE PREPFRAME
 <section class="section">
   <div class="urgent">
     <div class="label red">Attention immédiate</div>
-    <h2>J-1 : les 3 points à verrouiller</h2>
+    <h2>Avant l’entretien : vos 3 points non négociables</h2>
     <p data-field="urgent.subtitle"></p>
     <ul>
       <li><strong>Positionnement :</strong> <span data-field="urgent.positioning"></span></li>
@@ -705,7 +768,7 @@ TEMPLATE PREPFRAME
 <section class="section">
   <details class="english-kit">
     <summary>
-      <span>🇬🇧 English Preparation Kit — toujours disponible</span>
+      <span>🇬🇧 Préparation en anglais — à utiliser si l’entretien se déroule ou bascule en anglais</span>
       <span class="kit-chevron">▾</span>
     </summary>
     <div class="kit-body">
@@ -721,34 +784,38 @@ TEMPLATE PREPFRAME
 <section class="section-spaced">
   
 <div class="section-head" style="display:block;">
-  <h2 style="margin-bottom:10px;white-space:nowrap;">Quel entretien préparez-vous ?</h2>
-  <p class="section-desc" style="max-width:none;">Sélectionnez votre parcours pour afficher uniquement les cartes pertinentes.</p>
+  <h2 style="margin-bottom:10px;white-space:nowrap;">Quel type d’entretien préparez-vous ?</h2>
+  <p class="section-desc" style="max-width:none;">Choisissez le type d’échange que vous préparez. Un RH, un manager ou un dirigeant peut intervenir à plusieurs moments du processus : le filtre sert à prioriser votre préparation.</p>
 </div>
 
 
   <div class="tabs" role="tablist">
     <button class="tab" data-filter="all">
       <div class="tab-icon">🧭</div>
-      <div class="tab-title">Vue complète</div>
-      <p>Toutes les cartes, sans priorisation par interlocuteur.</p>
+      <div class="tab-title">Toutes les cartes</div>
+      <p>Affichez l’ensemble du guide, sans filtre ni priorisation.</p>
     </button>
     <button class="tab" data-filter="rh">
       <div class="tab-icon">👤</div>
       <div class="tab-title">RH</div>
-      <p>Motivation, cohérence du parcours, fit, attentes salariales et communication.</p>
+      <p>Préparez les questions liées à votre parcours, votre motivation et votre manière de communiquer. Ce type d'échange peut intervenir à n'importe quel stade du processus.</p>
     </button>
     <button class="tab" data-filter="manager">
       <div class="tab-icon">🎯</div>
       <div class="tab-title">Manager opérationnel</div>
-      <p>Crédibilité métier, exemples concrets, autonomie, jugement et maîtrise du poste.</p>
+      <p>Préparez les situations métier, vos décisions concrètes et votre manière de travailler au quotidien.</p>
     </button>
     <button class="tab" data-filter="final">
       <div class="tab-icon">👨‍💼</div>
       <div class="tab-title">Final round</div>
-      <p>Vision business, maturité, impact attendu et questions stratégiques.</p>
+      <p>Préparez les échanges plus stratégiques : projection, impact attendu et maturité professionnelle.</p>
     </button>
   </div>
-<div class="path-summary">
+  <div class="entry-state" id="entryState">
+    <p class="entry-title">Sélectionnez le type d’entretien que vous préparez</p>
+    <p class="entry-subtitle">Chaque type d'entretien a ses propres enjeux. Choisissez celui que vous préparez.</p>
+  </div>
+<div class="path-summary" style="display:none">
     <div>
       <h3 id="pathTitle"></h3>
       <p id="pathText"></p>
@@ -756,7 +823,7 @@ TEMPLATE PREPFRAME
     <ol class="path-list" id="pathList"></ol>
   </div>
 
-  <div id="filter-bar" class="filter-bar">
+  <div id="filter-bar" class="filter-bar" style="display:none">
     <button class="filt active" data-filt="all">Toutes</button>
     <button class="filt" data-filt="essential">Essentiel</button>
     <button class="filt" data-filt="complementary">Complémentaire</button>
@@ -765,7 +832,7 @@ TEMPLATE PREPFRAME
   </div>
 </section>
 
-<main class="cards" id="cards">
+<main class="cards" id="cards" style="display:none">
   <div class="round-separator" data-sep="rh"><span>RH</span></div>
 
   <article id="rh-risk" class="card warning-card" data-track="rh">
@@ -791,9 +858,50 @@ TEMPLATE PREPFRAME
   <article id="rh-eval" class="card" data-track="rh" data-context="true">
     <div class="card-body">
       <div class="card-top">
-        <div><div class="badges"><span class="badge context">Contexte</span><span class="badge rh">RH</span></div><h3>Ce que cet interlocuteur va évaluer</h3></div>
+        <div><div class="badges"><span class="badge context">Contexte</span><span class="badge rh">RH</span></div><h3>Ce que votre interlocuteur cherche à mesurer</h3></div>
       </div>
       <ul data-list="paths.rh.evaluation"></ul>
+    </div>
+  </article>
+
+
+  <article id="rh-realjob" class="card realjob-card" data-track="rh">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge rh">RH</span></div><h3>La réalité probable du poste</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-realjob="paths.rh.realJob"></div>
+    </div>
+  </article>
+
+  <article id="rh-hidden" class="card editorial-card" data-track="rh">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge rh">RH</span></div><h3>Ce qu’ils évaluent vraiment</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-hidden-eval="paths.rh.hiddenEvaluation"></div>
+    </div>
+  </article>
+
+  <article id="rh-perception" class="card perception-card" data-track="rh">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge warning">Perception</span></div><h3>Le doute à désamorcer</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-perception="paths.rh.perceptionRisks"></div>
+    </div>
+  </article>
+
+  <article id="rh-scenario" class="card scenario-card" data-track="rh">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge complementary">Simulation</span><span class="badge rh">RH</span></div><h3>Scénario d’entretien</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-scenario="paths.rh.scenario"></div>
     </div>
   </article>
 
@@ -820,7 +928,7 @@ TEMPLATE PREPFRAME
   <article id="rh-star" class="card" data-track="rh">
     <div class="card-body">
       <div class="card-top">
-        <div><div class="badges"><span class="badge complementary">Complémentaire</span><span class="badge rh">RH</span></div><h3>Exemples STAR à préparer</h3></div>
+        <div><div class="badges"><span class="badge complementary">Complémentaire</span><span class="badge rh">RH</span></div><h3>Récits STAR à construire</h3></div>
         <input class="check" type="checkbox" aria-label="Carte lue">
       </div>
       <p>STAR = <strong>Situation</strong> : contexte ; <strong>Task</strong> : ce qu’on attendait de vous ; <strong>Action</strong> : ce que vous avez fait ; <strong>Result</strong> : résultat ou apprentissage.</p>
@@ -841,7 +949,7 @@ TEMPLATE PREPFRAME
   <article id="rh-checklist" class="card" data-track="rh">
     <div class="card-body">
       <div class="card-top">
-        <div><div class="badges"><span class="badge bonus">Bonus</span><span class="badge rh">RH</span></div><h3>Checklist finale</h3></div>
+        <div><div class="badges"><span class="badge bonus">Bonus</span><span class="badge rh">RH</span></div><h3>Checklist de préparation</h3></div>
         <input class="check" type="checkbox" aria-label="Carte lue">
       </div>
       <ul class="checklist" data-checklist="paths.rh.checklist"></ul>
@@ -873,9 +981,50 @@ TEMPLATE PREPFRAME
   <article id="manager-eval" class="card" data-track="manager" data-context="true">
     <div class="card-body">
       <div class="card-top">
-        <div><div class="badges"><span class="badge context">Contexte</span><span class="badge manager">Manager</span></div><h3>Ce que cet interlocuteur va évaluer</h3></div>
+        <div><div class="badges"><span class="badge context">Contexte</span><span class="badge manager">Manager</span></div><h3>Ce que votre interlocuteur cherche à mesurer</h3></div>
       </div>
       <ul data-list="paths.manager.evaluation"></ul>
+    </div>
+  </article>
+
+
+  <article id="manager-realjob" class="card realjob-card" data-track="manager">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge manager">Manager</span></div><h3>La réalité probable du poste</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-realjob="paths.manager.realJob"></div>
+    </div>
+  </article>
+
+  <article id="manager-hidden" class="card editorial-card" data-track="manager">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge manager">Manager</span></div><h3>Ce qu’ils évaluent vraiment</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-hidden-eval="paths.manager.hiddenEvaluation"></div>
+    </div>
+  </article>
+
+  <article id="manager-perception" class="card perception-card" data-track="manager">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge warning">Perception</span></div><h3>Le doute à désamorcer</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-perception="paths.manager.perceptionRisks"></div>
+    </div>
+  </article>
+
+  <article id="manager-scenario" class="card scenario-card" data-track="manager">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge complementary">Simulation</span><span class="badge manager">Manager</span></div><h3>Scénario d’entretien</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-scenario="paths.manager.scenario"></div>
     </div>
   </article>
 
@@ -902,7 +1051,7 @@ TEMPLATE PREPFRAME
   <article id="manager-star" class="card" data-track="manager">
     <div class="card-body">
       <div class="card-top">
-        <div><div class="badges"><span class="badge complementary">Complémentaire</span><span class="badge manager">Manager</span></div><h3>Exemples STAR à préparer</h3></div>
+        <div><div class="badges"><span class="badge complementary">Complémentaire</span><span class="badge manager">Manager</span></div><h3>Récits STAR à construire</h3></div>
         <input class="check" type="checkbox" aria-label="Carte lue">
       </div>
       <p>Pour le manager, chaque STAR doit prouver une compétence métier : contexte, rôle exact, actions concrètes, résultat.</p>
@@ -923,7 +1072,7 @@ TEMPLATE PREPFRAME
   <article id="manager-checklist" class="card" data-track="manager">
     <div class="card-body">
       <div class="card-top">
-        <div><div class="badges"><span class="badge bonus">Bonus</span><span class="badge manager">Manager</span></div><h3>Checklist finale</h3></div>
+        <div><div class="badges"><span class="badge bonus">Bonus</span><span class="badge manager">Manager</span></div><h3>Checklist de préparation</h3></div>
         <input class="check" type="checkbox" aria-label="Carte lue">
       </div>
       <ul class="checklist" data-checklist="paths.manager.checklist"></ul>
@@ -955,9 +1104,50 @@ TEMPLATE PREPFRAME
   <article id="final-eval" class="card" data-track="final" data-context="true">
     <div class="card-body">
       <div class="card-top">
-        <div><div class="badges"><span class="badge context">Contexte</span><span class="badge final">Final round</span></div><h3>Ce que cet interlocuteur va évaluer</h3></div>
+        <div><div class="badges"><span class="badge context">Contexte</span><span class="badge final">Final round</span></div><h3>Ce que votre interlocuteur cherche à mesurer</h3></div>
       </div>
       <ul data-list="paths.final.evaluation"></ul>
+    </div>
+  </article>
+
+
+  <article id="final-realjob" class="card realjob-card" data-track="final">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge final">Final round</span></div><h3>La réalité probable du poste</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-realjob="paths.final.realJob"></div>
+    </div>
+  </article>
+
+  <article id="final-hidden" class="card editorial-card" data-track="final">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge final">Final round</span></div><h3>Ce qu’ils évaluent vraiment</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-hidden-eval="paths.final.hiddenEvaluation"></div>
+    </div>
+  </article>
+
+  <article id="final-perception" class="card perception-card" data-track="final">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge essential">Essentiel</span><span class="badge warning">Perception</span></div><h3>Le doute à désamorcer</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-perception="paths.final.perceptionRisks"></div>
+    </div>
+  </article>
+
+  <article id="final-scenario" class="card scenario-card" data-track="final">
+    <div class="card-body">
+      <div class="card-top">
+        <div><div class="badges"><span class="badge complementary">Simulation</span><span class="badge final">Final round</span></div><h3>Scénario d’entretien</h3></div>
+        <input class="check" type="checkbox" aria-label="Carte lue">
+      </div>
+      <div data-scenario="paths.final.scenario"></div>
     </div>
   </article>
 
@@ -984,7 +1174,7 @@ TEMPLATE PREPFRAME
   <article id="final-star" class="card" data-track="final">
     <div class="card-body">
       <div class="card-top">
-        <div><div class="badges"><span class="badge complementary">Complémentaire</span><span class="badge final">Final round</span></div><h3>Exemples STAR à préparer</h3></div>
+        <div><div class="badges"><span class="badge complementary">Complémentaire</span><span class="badge final">Final round</span></div><h3>Récits STAR à construire</h3></div>
         <input class="check" type="checkbox" aria-label="Carte lue">
       </div>
       <p>En final round, la STAR doit montrer l’impact, pas seulement l’exécution.</p>
@@ -1005,7 +1195,7 @@ TEMPLATE PREPFRAME
   <article id="final-checklist" class="card" data-track="final">
     <div class="card-body">
       <div class="card-top">
-        <div><div class="badges"><span class="badge bonus">Bonus</span><span class="badge final">Final round</span></div><h3>Checklist finale</h3></div>
+        <div><div class="badges"><span class="badge bonus">Bonus</span><span class="badge final">Final round</span></div><h3>Checklist de préparation</h3></div>
         <input class="check" type="checkbox" aria-label="Carte lue">
       </div>
       <ul class="checklist" data-checklist="paths.final.checklist"></ul>
@@ -1013,32 +1203,13 @@ TEMPLATE PREPFRAME
   </article>
 </main>
 
-<section class="section-spaced">
-  <div class="section-head">
-    <h2>Notes personnelles</h2>
-    <p class="section-desc">Espace de travail actif pour préparer les formulations, exemples et questions à garder sous les yeux.</p>
-  </div>
-  <div class="notes">
-    <div class="notes-grid">
-      <div class="note-field">
-        <label for="notes1">Arguments à renforcer</label>
-        <textarea id="notes1" placeholder="Reformulations, angles à renforcer, points de vigilance..."></textarea>
-      </div>
-      <div class="note-field">
-        <label for="notes2">Questions à poser</label>
-        <textarea id="notes2" placeholder="Questions à garder sous les yeux pendant l’entretien..."></textarea>
-      </div>
-      <div class="note-field full">
-        <label for="notes3">Exemples / STAR à raconter</label>
-        <textarea id="notes3" placeholder="Situation — Task — Action — Result..."></textarea>
-      </div>
-    </div>
-  </div>
-</section>
 
-<div class="footer">Prepframe — Guide de préparation confidentiel.</div>
+
+<div class="pdf-export"><button id="downloadPdfBtn" class="pdf-btn" type="button">Enregistrer votre guide en PDF</button></div>
+<div class="footer">Prepframe — Document privé, usage candidat exclusif. <span class="footer-meta">Généré le <span data-field="meta.generatedAt"></span></span></div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdhPK4P/uRWYvU+Ou12ddflDHSJVY2CIW3+0V+FDutJQUGB8C89ep5T5BESgfD0JUx8D4Lr5s+OAH4oVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 /*
   ==============================
@@ -1048,268 +1219,288 @@ TEMPLATE PREPFRAME
   Ne pas ajouter de HTML dans les valeurs : injection via textContent uniquement.
 */
 const GUIDE_DATA = {
-  "meta": {
-    "candidate": "Candidat : Lila Fournier",
-    "role": "Poste : Comptable Contrôle Interne & Conformité H/F",
-    "company": "Entreprise : Groupe Ortec"
-  },
-  "hero": {
-    "title": "Guide de préparation à l'entretien",
-    "subtitle": "Guide de préparation privé pour Lila Fournier – poste Comptable Contrôle Interne & Conformité chez le Groupe Ortec.",
-    "disclaimer": "Ce document repose sur l'analyse de la fiche de poste et du CV transmis ; certains éléments sont des hypothèses de travail à confirmer directement en entretien."
-  },
-  "priorities": [
-    "Mettre en avant l'expérience Sapin II chez Carrefour Belgique comme preuve directe de la mission principale du poste.",
-    "Ancrer le positionnement sur le contrôle de niveau 2 et l'amélioration des processus, pas uniquement sur l'audit interne.",
-    "Préparer à expliquer l'absence de background comptable pur face à un profil attendu Bac+3/5 en comptabilité/finance."
-  ],
-  "risks": [
-    "Le profil est orienté audit interne et contrôle ; la dimension comptable explicite (caisses, banques, factures) est peu visible dans le CV.",
-    "Le retour de VIE fin avril 2026 peut susciter une interrogation sur la disponibilité immédiate et la stabilité géographique vers Aix-en-Provence.",
-    "Le CV mentionne six années d'expérience mais les deux à trois ans en comptabilité stricto sensu attendus par le poste ne sont pas formellement démontrés."
-  ],
-  "urgent": {
-    "subtitle": "Ce poste est la première interface entre le Groupe Ortec et la cellule Compliance Sapin II : crédibiliser l'opérationnel est prioritaire.",
-    "positioning": "Vous devez éviter d'apparaître uniquement comme une auditrice interne ; repositionnez-vous comme une spécialiste du contrôle de niveau 2 orientée amélioration des processus.",
-    "proof": "Préparez un exemple concret de mission de contrôle interne chez Carrefour Belgique incluant Sapin II, avec les étapes suivies et les conclusions remontées à la direction.",
-    "trap": "Ne survalorisez pas la dimension audit formel au détriment des contrôles opérationnels comptables que le poste exige au quotidien.",
-    "miniScript": "J'ai conduit des missions de contrôle de niveau 2 dans un environnement Sapin II, avec restitution directe à la direction et suivi des plans de remédiation."
-  },
-  "english": {
-    "useCase": "English proficiency may be useful for cross-country workshops or interactions with international subsidiaries within the Ortec Group, based on the job description's mention of multi-country integration.",
-    "script1": "In my previous role at Carrefour Belgium, I participated in cross-border workshops related to Sapin II compliance, which required me to work in both French and English.",
-    "script2": "I am comfortable reading and discussing compliance documentation in English, which could be relevant given Ortec's presence in 25 countries."
-  },
-  "pathSummary": {
-    "all": "La candidature de Lila Fournier est solide sur la conformité et le contrôle interne, mais devra démontrer sa capacité à descendre dans le détail comptable opérationnel attendu par Ortec.",
-    "rh": "L'entretien RH évaluera principalement la cohérence du parcours, la motivation pour un retour en France à Aix-en-Provence, et la stabilité après plusieurs mobilités internationales.",
-    "manager": "L'entretien avec Aurélia évaluera la capacité à exécuter des contrôles de niveau 2 concrets, à travailler sur des processus comptables et à produire des conclusions exploitables.",
-    "final": "L'entretien avec le Directeur Général Adjoint évaluera la maturité sur les enjeux de conformité Sapin II dans un contexte de croissance par acquisitions et d'intégration de sociétés."
-  },
-  "paths": {
-    "rh": {
-      "risk": {
-        "main": "Elodie pourrait s'interroger sur la cohérence d'un profil très mobile (France, Canada, Belgique) qui postule à un CDI au siège à Aix-en-Provence.",
-        "response": "Je reviens de mon VIE au 30 avril 2026 et je cherche à m'ancrer durablement en France. Aix-en-Provence correspond à un projet de vie et non à une étape de transit."
-      },
-      "company": {
-        "title": "Pourquoi le Groupe Ortec ?",
-        "points": [
-          "Groupe industriel de 14 500 collaborateurs présent dans 25 pays, en croissance active par acquisitions.",
-          "Renforcement de la cellule Compliance Sapin II dans un contexte d'intégration de nouvelles sociétés.",
-          "Environnement transverse, avec reporting direct à la Responsable Compliance et au Directeur Général.",
-          "CDI au siège d'Aix-les-Milles avec télétravail partiel et avantages groupe structurés."
-        ]
-      },
-      "evaluation": [
-        "Cohérence et lisibilité du parcours professionnel sur six ans.",
-        "Motivations réelles pour ce poste et pour Ortec en particulier.",
-        "Disponibilité et conditions de prise de poste après le retour de VIE.",
-        "Stabilité perçue et projection dans la durée au sein du groupe."
-      ],
-      "requirements": [
-        {
-          "requirement": "Formation Bac+3/5 en comptabilité/finance",
-          "proof": "Master Finance Paris 1 Panthéon-Sorbonne et Bachelor Finance INSEEC démontrent le niveau requis.",
-          "gap": "La spécialité est finance/risque, pas comptabilité pure ; cela peut créer une attente non satisfaite.",
-          "gapLevel": "partial",
-          "oralResponse": "Mon Master Finance à Paris 1 m'a donné des bases solides en analyse financière et en processus comptables, que j'ai approfondies dans mes missions de contrôle sur des flux de trésorerie et de facturation."
-        },
-        {
-          "requirement": "2 à 4 ans d'expérience en comptabilité permettant une autonomie rapide",
-          "proof": "Le CV ne fait pas état d'une expérience comptable stricto sensu ; les expériences sont orientées contrôle, audit et risque.",
-          "gap": "L'expérience comptable directe (caisses, banques, factures) est absente ou non formulée dans le CV.",
-          "gapLevel": "real",
-          "oralResponse": "Mes missions de contrôle ont systématiquement inclus des vérifications sur des flux comptables – trésorerie, facturation, réconciliations – même si mon titre n'était pas comptable. Je suis prête à préciser les périmètres exacts lors de l'entretien."
-        },
-        {
-          "requirement": "Bon relationnel et capacité à être force de proposition",
-          "proof": "La coordination de 15 départements en RCSA et la participation à des workshops inter-pays chez Carrefour Belgique démontrent un relationnel structuré.",
-          "gap": "Aucun gap identifié.",
-          "gapLevel": "none",
-          "oralResponse": "J'ai coordonné des exercices d'évaluation des risques sur 15 départements, ce qui impliquait de convaincre des interlocuteurs opérationnels de l'utilité des contrôles et de formuler des recommandations actionnables."
-        }
-      ],
-      "scripts": [
-        "Après six ans dans des environnements bancaires et retail en France, au Canada et en Belgique, je reviens avec une vision concrète de ce que signifie construire un dispositif de contrôle interne qui fonctionne. Ce que je cherche maintenant, c'est un environnement où cette expérience peut s'inscrire dans la durée.",
-        "Ce qui m'attire chez Ortec, c'est la combinaison entre la taille du groupe – avec un vrai périmètre transverse – et un contexte Sapin II en construction, qui demande à la fois rigueur opérationnelle et capacité à structurer. C'est exactement ce que j'ai fait chez Carrefour Belgique."
-      ],
-      "stars": [
-        {
-          "title": "Workshops Sapin II inter-pays",
-          "situation": "Chez Carrefour Belgique, j'ai contribué à des workshops groupe et inter-pays dans le cadre de la mise en œuvre de la loi Sapin II.",
-          "task": "Il s'agissait d'assurer la cohérence des pratiques de conformité sur plusieurs périmètres nationaux et de faire remonter les écarts identifiés.",
-          "action": "J'ai participé à la préparation des sessions, à la formalisation des constats et à la restitution des conclusions aux équipes concernées.",
-          "result": "Les workshops ont permis d'aligner les pratiques sur les exigences Sapin II ; les résultats précis restent à confirmer mais la démarche était structurée et documentée."
-        },
-        {
-          "title": "Retour de mobilité internationale",
-          "situation": "Mon VIE chez Carrefour Belgique se termine fin avril 2026, après un parcours incluant la France, le Canada et la Belgique.",
-          "task": "Je devais démontrer ma capacité à opérer avec autonomie dans des environnements nouveaux à chaque étape.",
-          "action": "J'ai pris en charge des missions de contrôle interne dès mon arrivée chez Carrefour Belgique, en m'adaptant rapidement aux processus et aux outils locaux.",
-          "result": "Ce parcours m'a permis de développer une adaptabilité opérationnelle rapide, que je considère comme un atout direct pour une intégration efficace chez Ortec."
-        }
-      ],
-      "questions": [
-        "Quel est le délai de prise de poste souhaité et y a-t-il une période d'intégration structurée prévue avec Aurélia ?",
-        "Comment se traduit concrètement la mobilité interne mentionnée dans l'offre : sur quels types de postes et dans quel horizon de temps ?",
-        "Quelles sont les principales attentes pour les six premiers mois dans ce rôle ?"
-      ],
-      "checklist": [
-        "Préparer une réponse claire sur les raisons du retour en France et le choix d'Aix-en-Provence comme lieu de vie.",
-        "Avoir en tête une fourchette salariale cohérente avec le marché local et le profil attendu.",
-        "Confirmer la disponibilité exacte après la fin du VIE (30 avril 2026) et tout délai éventuel de préavis ou de déménagement."
-      ]
-    },
-    "manager": {
-      "risk": {
-        "main": "Aurélia pourrait douter de la capacité de la candidate à réaliser des contrôles comptables opérationnels (caisses, banques, factures) de façon autonome, domaine peu visible dans le CV.",
-        "response": "Mes missions de contrôle interne ont inclus la vérification de flux financiers et de réconciliations. Je peux préciser les périmètres exacts sur lesquels j'ai travaillé et ma méthode d'exécution."
-      },
-      "company": {
-        "title": "Périmètre opérationnel du poste",
-        "points": [
-          "Contrôles de niveau 2 sur des processus comptables : caisses, banques, contrôle des factures.",
-          "Participation aux audits compliance Sapin II avec restitution à la Responsable et au DG.",
-          "Contrôle interne non financier : ligne d'alerte, formations, conflits d'intérêt.",
-          "Gestion documentaire : mise à jour des procédures en lien avec la cellule Compliance."
-        ]
-      },
-      "evaluation": [
-        "Maîtrise concrète des techniques de contrôle de niveau 2 et capacité à les appliquer sur des flux comptables.",
-        "Autonomie dans l'exécution des missions et qualité des livrables produits.",
-        "Capacité à formuler des conclusions claires et à les restituer à la hiérarchie.",
-        "Expérience dans la mise à jour ou la rédaction de procédures de contrôle."
-      ],
-      "requirements": [
-        {
-          "requirement": "Participer aux audits compliance de niveau 2 et présenter les conclusions à la direction",
-          "proof": "Chez Carrefour Belgique, pilotage de 7 missions de contrôle interne avec évaluation selon COSO, identification des faiblesses et suivi des remédations (80% de mise en œuvre).",
-          "gap": "Le CV ne précise pas si les conclusions étaient restituées directement au Directeur Général ou uniquement à la hiérarchie intermédiaire.",
-          "gapLevel": "partial",
-          "oralResponse": "Sur mes missions chez Carrefour Belgique, j'ai produit des rapports de contrôle et participé aux restitutions. Je peux décrire précisément le format de ces présentations et les niveaux hiérarchiques impliqués."
-        },
-        {
-          "requirement": "Contrôles spécifiques sur comptabilité : caisses, banques, contrôle des factures",
-          "proof": "Le CV ne mentionne pas explicitement de contrôles sur caisses ou factures ; l'expérience est orientée processus et risques plutôt que comptabilité transactionnelle.",
-          "gap": "Les contrôles comptables de détail (soldes de caisse, réconciliations bancaires, validation de factures) ne sont pas explicitement documentés.",
-          "gapLevel": "real",
-          "oralResponse": "Dans mes missions de contrôle des processus financiers, j'ai travaillé sur des périmètres incluant des flux de trésorerie et de paiement. Je suis prête à monter en compétence rapidement sur les spécificités comptables d'Ortec avec l'encadrement d'Aurélia."
-        },
-        {
-          "requirement": "Appétence forte pour les SI et maîtrise des outils informatiques et comptables",
-          "proof": "Le CV mentionne Excel, Power BI et Google Workspace. Aucun outil comptable spécifique (SAP, Sage, Cegid) n'est cité.",
-          "gap": "La maîtrise d'outils comptables métier (ERP, logiciel de facturation) n'est pas documentée.",
-          "gapLevel": "partial",
-          "oralResponse": "Je maîtrise Excel à un niveau avancé et Power BI pour le suivi d'indicateurs. J'ai travaillé avec des systèmes d'information différents à chaque poste et j'ai toujours su m'adapter rapidement à de nouveaux environnements SI."
-        }
-      ],
-      "scripts": [
-        "Chez Carrefour Belgique, une mission de contrôle typique démarrait par une cartographie des risques sur le processus ciblé, suivie de tests de contrôle – entretiens, échantillonnage, vérification documentaire – puis d'une synthèse remontée à la direction avec des recommandations priorisées. C'est cette logique que j'appliquerais sur les contrôles de niveau 2 ici.",
-        "Sur 15 départements en RCSA, j'ai appris à adapter mon approche à des interlocuteurs opérationnels qui n'ont pas de culture contrôle : vulgariser sans perdre en rigueur, documenter de façon utile et non bureaucratique. C'est ce que j'apporterais dans la mise à jour des procédures chez Ortec."
-      ],
-      "stars": [
-        {
-          "title": "Mission RCSA sur 15 départements",
-          "situation": "Chez Carrefour Belgique, j'ai coordonné des exercices d'évaluation des risques et de RCSA couvrant 15 départements.",
-          "task": "Il fallait structurer la collecte d'information, évaluer la robustesse des contrôles existants et produire une synthèse exploitable.",
-          "action": "J'ai réalisé des entretiens, des tests de contrôle et de l'échantillonnage selon le référentiel COSO, puis identifié les faiblesses et contribué à l'amélioration des processus.",
-          "result": "Le taux de mise en œuvre des plans de remédiation a atteint 80%, ce qui indique un suivi effectif des recommandations formulées."
-        },
-        {
-          "title": "Contrôle KYC/EDD chez HSBC France",
-          "situation": "Chez HSBC France, j'ai réalisé des contrôles KYC, CDD et EDD sur un portefeuille d'environ 200 PME.",
-          "task": "Il s'agissait d'identifier les anomalies et de décider des dossiers hors seuils de risque dans le cadre du dispositif de contrôle interne.",
-          "action": "J'ai appliqué une grille d'évaluation rigoureuse, remonté les anomalies identifiées et refusé les dossiers ne satisfaisant pas aux critères de risque et de contrôle.",
-          "result": "Ce travail a contribué à la robustesse du dispositif de première et de deuxième ligne de défense sur le périmètre dont j'avais la charge."
-        }
-      ],
-      "questions": [
-        "Sur quels processus comptables les contrôles de niveau 2 portent-ils prioritairement en ce moment – caisses, banques, facturation fournisseurs ou autres périmètres ?",
-        "Quel est le niveau d'outillage actuel de la cellule Compliance : existe-t-il des outils dédiés de suivi des contrôles ou tout est géré sous Excel ?",
-        "Quelle est la fréquence des restitutions au Directeur Général Adjoint et sous quel format sont-elles habituellement présentées ?"
-      ],
-      "checklist": [
-        "Préparer deux ou trois exemples de contrôles opérationnels réalisés chez Carrefour Belgique avec les critères d'évaluation utilisés.",
-        "Être prête à expliquer concrètement comment vous documentez un contrôle : trame utilisée, niveaux de preuve, formalisation.",
-        "Anticiper la question sur les outils SI : préparer une réponse sur votre capacité d'adaptation à de nouveaux environnements informatiques."
-      ]
-    },
-    "final": {
-      "risk": {
-        "main": "Olivier pourrait percevoir un profil solide techniquement mais dont la compréhension des enjeux stratégiques de la conformité dans un groupe industriel en acquisition reste à démontrer.",
-        "response": "J'ai contribué à la mise en œuvre de Sapin II dans un groupe de distribution multinationale, ce qui m'a permis de comprendre les enjeux de conformité à l'échelle d'une organisation complexe, au-delà de l'exécution des contrôles."
-      },
-      "company": {
-        "title": "Enjeux stratégiques de la conformité Ortec",
-        "points": [
-          "Intégration de sociétés récemment acquises dans un groupe de 14 500 collaborateurs présent dans 25 pays.",
-          "Renforcement de la cellule Compliance Sapin II comme priorité stratégique explicite du groupe.",
-          "Reporting des conclusions de contrôle directement au Directeur Général Adjoint.",
-          "Loi Sapin II comme cadre structurant : anticorruption, conflits d'intérêt, ligne d'alerte, cartographie des risques."
-        ]
-      },
-      "evaluation": [
-        "Compréhension des enjeux de conformité dans un groupe industriel en croissance par acquisitions.",
-        "Maturité sur le rôle stratégique du contrôle interne comme levier de gouvernance, pas seulement d'exécution.",
-        "Capacité à communiquer des conclusions de contrôle à un niveau de direction générale.",
-        "Vision sur l'apport du poste à la structuration de la cellule Compliance au-delà des tâches quotidiennes."
-      ],
-      "requirements": [
-        {
-          "requirement": "Participer à la croissance du Groupe et à l'intégration de sociétés récemment acquises via la cellule Compliance Sapin II",
-          "proof": "La contribution à des workshops groupe et inter-pays dans le cadre de Sapin II chez Carrefour Belgique est une preuve directe d'expérience dans un contexte de conformité multi-entités.",
-          "gap": "Le CV ne documente pas d'expérience dans un contexte d'acquisition ou d'intégration post-fusion.",
-          "gapLevel": "partial",
-          "oralResponse": "Chez Carrefour Belgique, j'ai travaillé dans un environnement groupe où la conformité Sapin II devait s'appliquer de façon cohérente sur plusieurs entités. C'est un contexte proche de celui d'une intégration, même si je n'ai pas participé formellement à une fusion."
-        },
-        {
-          "requirement": "Contrôle interne non financier : processus sur ligne d'alerte, formation, conflit d'intérêt",
-          "proof": "La participation aux workshops Sapin II chez Carrefour Belgique couvre implicitement ces thématiques, mais le CV ne les détaille pas explicitement.",
-          "gap": "L'expérience sur la ligne d'alerte, la gestion des conflits d'intérêt ou l'animation de formations compliance n'est pas formellement documentée.",
-          "gapLevel": "partial",
-          "oralResponse": "Les workshops Sapin II auxquels j'ai contribué chez Carrefour couvraient plusieurs dimensions non financières de la conformité. Je peux préciser les thématiques traitées si cela est utile pour évaluer mon niveau de préparation sur ces sujets."
-        },
-        {
-          "requirement": "Présenter les conclusions à la Responsable de la cellule Compliance et au Directeur Général",
-          "proof": "Le CV mentionne la production de rapports et la formulation de recommandations, mais sans préciser le niveau hiérarchique des destinataires.",
-          "gap": "L'expérience de restitution directe à un Directeur Général ou DGA n'est pas explicitement documentée.",
-          "gapLevel": "partial",
-          "oralResponse": "J'ai produit des rapports de contrôle destinés à la direction et participé à des restitutions. Je suis à l'aise avec cet exercice et je comprends que la clarté et la hiérarchisation des constats sont essentielles à ce niveau."
-        }
-      ],
-      "scripts": [
-        "Ce qui me semble structurant dans ce poste, c'est qu'il se situe à l'intersection entre l'exécution des contrôles et la restitution stratégique à la direction générale. C'est une position où la qualité du jugement compte autant que la rigueur technique. C'est ce que j'ai cherché à développer dans mes missions précédentes.",
-        "Un groupe qui intègre de nouvelles sociétés a besoin que la conformité soit à la fois crédible opérationnellement et compréhensible au niveau stratégique. Mon expérience dans des environnements multi-entités m'a appris à calibrer le niveau de message selon l'interlocuteur, sans perdre en substance."
-      ],
-      "stars": [
-        {
-          "title": "Sapin II dans un groupe multi-entités",
-          "situation": "Chez Carrefour Belgique, j'ai contribué à la mise en œuvre de la loi Sapin II dans un groupe opérant dans plusieurs pays.",
-          "task": "Il s'agissait d'assurer la cohérence du dispositif de conformité sur des périmètres organisationnels différents et de faire remonter les constats à la direction.",
-          "action": "J'ai participé à des workshops inter-pays, contribué à l'alignement des pratiques et à la formalisation des conclusions pour les équipes dirigeantes.",
-          "result": "Cette expérience m'a permis de comprendre les défis de la conformité à l'échelle d'un groupe complexe, au-delà de l'exécution locale des contrôles."
-        },
-        {
-          "title": "Suivi de remédiation à 80%",
-          "situation": "À l'issue de mes missions de contrôle interne chez Carrefour Belgique, des plans de remédiation ont été définis sur la base de mes recommandations.",
-          "task": "Il fallait assurer le suivi de la mise en œuvre des actions correctives identifiées sur les faiblesses de contrôle.",
-          "action": "J'ai coordonné le suivi des plans de remédiation en maintenant un dialogue avec les équipes opérationnelles concernées et en documentant l'avancement.",
-          "result": "Le taux de mise en œuvre a atteint 80%, ce qui témoigne d'une capacité à transformer des constats de contrôle en actions concrètes et mesurables."
-        }
-      ],
-      "questions": [
-        "Dans le contexte des acquisitions récentes, quelle est la priorité de la cellule Compliance pour les 12 prochains mois : structurer les processus des nouvelles entités ou consolider l'existant ?",
-        "Comment le Directeur Général Adjoint définit-il le succès pour ce poste à horizon un an ?",
-        "La cellule Compliance est-elle amenée à travailler directement avec les directions opérationnelles des entités acquises, ou le travail passe-t-il par une interface dédiée ?"
-      ],
-      "checklist": [
-        "Préparer une synthèse en deux ou trois phrases de votre compréhension des enjeux Sapin II pour un groupe industriel multi-pays – à restituer de façon fluide si Olivier l'aborde.",
-        "Avoir une position claire sur votre vision du rôle du contrôle interne comme levier de gouvernance, pas seulement d'exécution.",
-        "Anticiper une question sur ce que vous apporteriez concrètement à la structuration de la cellule Compliance dans les six premiers mois."
-      ]
-    }
-  }
+"hero": {
+"title": "Guide de préparation à l'entretien",
+"subtitle": "Ce guide privé vous accompagne pour valoriser vos compétences en contrôle interne et sécuriser votre recrutement chez Ortec.",
+"disclaimer": "Ce document repose sur l'analyse de la fiche de poste, du CV transmis et des informations disponibles publiquement. Il ne constitue pas une vérité établie : certains éléments sont des hypothèses de travail à confirmer directement en entretien."
+},
+"meta": {
+"version": "3.0.0",
+"generatedAt": "",
+"candidate": "Candidat : Lila Fournier",
+"role": "Poste : Comptable Contrôle Interne & Conformité H/F",
+"company": "Entreprise : Groupe Ortec"
+},
+"priorities": [
+"Valoriser votre expérience sur la loi Sapin II acquise chez Carrefour Belgique pour ce poste orienté compliance.",
+"Démontrer votre capacité à réaliser des contrôles comptables approfondis malgré un parcours principalement axé sur le risque de crédit.",
+"Expliquer votre motivation pour rejoindre le siège d'Ortec à Aix-en-Provence après votre VIE se terminant fin avril 2026."
+],
+"risks": [
+"Le recruteur peut craindre un manque d'expérience purement comptable, vos postes précédents étant très orientés analyse de crédit.",
+"Votre profil très bancaire et grande distribution peut sembler déconnecté des problématiques du secteur industriel d'Ortec.",
+"Le niveau en néerlandais A1 et l'anglais courant doivent être positionnés par rapport aux besoins du groupe international."
+],
+"urgent": {
+"subtitle": "Préparez votre transition de la banque vers le secteur industriel en mettant en avant vos compétences en compliance Sapin II.",
+"positioning": "Vous êtes une spécialiste du contrôle interne avec une solide culture financière, prête à sécuriser les processus d'Ortec.",
+"proof": "Votre pilotage de 7 missions de contrôle interne basées sur les risques et le référentiel COSO chez Carrefour.",
+"trap": "Ancrer chaque réponse sur un exemple concret tiré de votre expérience en gestion des risques et conformité réglementaire.",
+"miniScript": "Je mets mes 6 années d'expérience en finance et contrôle interne au service de la cellule Compliance d'Ortec pour sécuriser l'intégration des filiales acquises et garantir l'efficacité de nos contrôles de niveau 2."
+},
+"english": {
+"useCase": "To discuss internal control frameworks or exchange with international subsidiaries of the Ortec Group during audits.",
+"script1": "During my experience at Carrefour Belgium, I successfully managed internal control reviews based on the COSO framework and international standards.",
+"script2": "I am fully comfortable working in English, as I previously completed a university exchange in London during my finance degree."
+},
+"pathSummary": {
+"all": "Affichez l'ensemble du guide pour revoir les priorités, les risques, les scripts, les récits STAR et les questions à préparer.",
+"rh": "Élodie évalue votre cohérence de parcours, votre motivation pour le secteur industriel et votre intégration géographique à Aix-en-Provence.",
+"manager": "Aurélia et Michèle évaluent vos compétences techniques en contrôle de niveau 2, comptabilité, gestion documentaire et loi Sapin II.",
+"final": "Olivier évalue votre maturité business, votre capacité à présenter des conclusions claires et votre alignement avec la croissance du groupe."
+},
+"paths": {
+"rh": {
+"risk": {
+"main": "Crainte d'une instabilité géographique ou d'un défaut d'ancrage régional après un parcours entre Paris, Londres, le Canada et la Belgique.",
+"response": "Mon retour de VIE fin avril 2026 marque ma volonté de m'installer durablement à Aix-en-Provence et de m'investir sur le long terme."
+},
+"company": {
+"title": "Ce que vous devez savoir sur la politique RH d'Ortec",
+"points": [
+"Le groupe propose un parcours d'intégration personnalisé directement avec Aurélia, la Compliance Controller.",
+"Ortec valorise la mobilité interne, l'évolution professionnelle et possède son propre centre de formation.",
+"Le poste est basé au siège à Aix-les-Milles avec un accord de télétravail d'une journée par semaine."
+]
+},
+"evaluation": [
+"Votre motivation pour le secteur des services industriels.",
+"La cohérence de votre transition après votre VIE.",
+"Vos soft skills, notamment le bon relationnel et la rigueur."
+],
+"realJob": {
+"reality": "Le poste implique des contrôles de niveau 2 au siège à Aix-les-Milles sous la supervision directe d'Aurélia.",
+"constraint": "Le rythme demande une grande rigueur pour analyser la comptabilité (caisses, banques) et les processus non financiers.",
+"implication": "Vous devez démontrer votre autonomie rapide sur les outils informatiques et comptables dès votre intégration."
+},
+"hiddenEvaluation": {
+"question": "Pourquoi souhaitez-vous quitter le secteur bancaire et la grande distribution pour rejoindre un groupe industriel comme Ortec ?",
+"realTest": "Vérifier que ce choix est réfléchi et que vous comprenez les enjeux d'un siège social industriel.",
+"badAnswer": "Je cherche juste un nouveau poste après mon VIE en Belgique et l'offre d'Ortec m'a semblé intéressante.",
+"goodAnswer": "Je souhaite appliquer mes compétences en contrôle interne et Sapin II à un environnement industriel dynamique en pleine croissance externe, ce qui représente un excellent défi."
+},
+"perceptionRisks": {
+"risk": "Le recruteur peut penser que vous visez ce poste uniquement pour revenir en France.",
+"why": "Cela remet en cause votre engagement à long terme dans l'entreprise.",
+"fix": "*Mon projet de retour en France est mûri et s'accompagne d'une réelle volonté de rejoindre Ortec pour son excellence sectorielle.*"
+},
+"scenario": {
+"situation": "Le recruteur vous demande comment vous envisagez votre intégration au sein d'une équipe basée à Aix-en-Provence.",
+"badPosture": "Se montrer passif et attendre que l'entreprise gère toute l'intégration sans poser de questions logistiques.",
+"goodPosture": "Mettre en avant votre adaptabilité éprouvée lors de vos expériences internationales au Canada et en Belgique.",
+"line": "J'ai l'habitude de m'intégrer rapidement dans de nouveaux environnements grâce à mon ouverture d'esprit et ma curiosité."
+},
+"requirements": [
+{
+"requirement": "Formation Bac +3/5 en comptabilité/finance.",
+"proof": "Titulaire d'un Master Finance de l'Université Paris 1 Panthéon-Sorbonne obtenu en 2022.",
+"gap": "Aucun écart identifié.",
+"gapLevel": "none",
+"oralResponse": "Ma formation académique à la Sorbonne m'a apporté toutes les bases financières et comptables nécessaires pour ce poste."
+},
+{
+"requirement": "Compétences relationnelles et travail en équipe.",
+"proof": "Expérience de coordination de workshops inter-pays chez Carrefour et gestion de portefeuille clients chez HSBC.",
+"gap": "Aucun écart identifié.",
+"gapLevel": "none",
+"oralResponse": "Mon parcours en relation client et en animation de workshops prouve ma capacité à communiquer efficacement avec tout type d'interlocuteur."
+}
+],
+"scripts": [
+"De retour de mon Volontariat International en Entreprise au 30 avril 2026, je souhaite capitaliser sur mes six années d'expérience en finance pour rejoindre la cellule Compliance d'Ortec et accompagner sa dynamique de croissance.",
+"Mon adaptabilité, forgée par mes expériences à l'international, me permettra d'être rapidement opérationnelle et de m'intégrer harmonieusement au sein de l'équipe d'Aurélia au siège d'Aix-les-Milles."
+],
+"stars": [
+{
+"title": "Adaptabilité internationale en VIE",
+"situation": "Arrivée en Belgique chez Carrefour dans le cadre d'un Volontariat International en Entreprise.",
+"task": "Prendre en charge des missions de contrôle interne dans un nouveau contexte pays.",
+"action": "Je me suis approprié l'environnement local et j'ai collaboré à des workshops inter-pays.",
+"result": "Une intégration réussie et la gestion de 7 missions complexes (résultat à préciser en entretien)."
+}
+],
+"questions": [
+"Comment décririez-vous la culture d'entreprise au sein du siège social d'Ortec à Aix-les-Milles ?",
+"Quelles sont les prochaines étapes clés du parcours d'intégration prévu avec Aurélia ?",
+"Quels sont les profils des autres collaborateurs qui composent la cellule Compliance aujourd'hui ?"
+],
+"checklist": [
+"Relire la présentation générale du Groupe Ortec et ses 50 métiers.",
+"Valider vos arguments logistiques concernant votre installation à Aix-en-Provence.",
+"Préparer une explication claire sur la fin de votre VIE au 30 avril 2026."
+]
+},
+"manager": {
+"risk": {
+"main": "Doute sur votre capacité opérationnelle en comptabilité pure, vos expériences passées étant principalement axées sur les risques de crédit.",
+"response": "Mes contrôles chez Carrefour et mes fonctions d'analyse financière m'ont imposé une manipulation quotidienne et rigoureuse des états comptables."
+},
+"company": {
+"title": "Le contexte de la cellule Compliance chez Ortec",
+"points": [
+"La cellule renforce ses effectifs pour accompagner l'intégration de sociétés récemment acquises par le groupe.",
+"Les missions couvrent à la fois le contrôle interne financier, comptable et non financier (ligne d'alerte, conflits d'intérêts).",
+"La méthodologie de contrôle s'appuie sur le dispositif de la Loi Sapin 2 au sein de l'organisation."
+]
+},
+"evaluation": [
+"Votre maîtrise des techniques d'échantillonnage et de tests de contrôle.",
+"Votre autonomie sur les outils informatiques et SI (Excel, Power BI).",
+"Votre capacité à mettre à jour la gestion documentaire et les procédures."
+],
+"realJob": {
+"reality": "Le quotidien comprend la réalisation d'audits compliance de niveau 2 et la vérification des comptes caisses et banques.",
+"constraint": "Il faut assurer le suivi des plans de remédiation et la mise à jour documentaire de manière continue.",
+"implication": "Votre rigueur analytique doit se traduire par des livrables directement exploitables par la responsable de cellule."
+},
+"hiddenEvaluation": {
+"question": "Pouvez-vous m'expliquer comment vous réalisiez vos tests de contrôle et votre échantillonnage chez Carrefour ?",
+"realTest": "Évaluer votre rigueur méthodologique et votre maîtrise concrète du référentiel COSO sur le terrain.",
+"badAnswer": "Je choisissais quelques dossiers au hasard dans la base de données et je vérifiais si tout semblait correct visuellement.",
+"goodAnswer": "Chez Carrefour, je définissais mon échantillon selon une approche par les risques, puis j'exécutais les tests de contrôle conformément au référentiel COSO via des entretiens et l'analyse des pièces justificatives."
+},
+"perceptionRisks": {
+"risk": "La manager peut craindre que vous n'aimiez pas la partie administrative de gestion documentaire.",
+"why": "La mise à jour des procédures est essentielle pour la conformité de niveau 2.",
+"fix": "*La gestion documentaire fait partie intégrante de la robustesse du contrôle interne ; j'y accorde une importance méthodologique stricte.*"
+},
+"scenario": {
+"situation": "Vous identifiez une anomalie récurrente dans le contrôle des factures d'une société récemment acquise.",
+"badPosture": "Corriger l'erreur directement sans analyser l'origine du problème ni en informer la hiérarchie.",
+"goodPosture": "Réaliser une analyse des causes racines, formaliser l'écart et proposer une mise à jour de la procédure.",
+"line": "J'analyserai la cause racine de cette anomalie et je formulerai une recommandation pour adapter la procédure existante."
+},
+"requirements": [
+{
+"requirement": "2/4 ans d'expériences en comptabilité ou contrôle financier permettant une autonomie rapide.",
+"proof": "Six années d'expérience globale incluant du contrôle interne chez Carrefour et de l'analyse financière à la Société Générale.",
+"gap": "Parcours plus orienté contrôle interne et conformité que comptabilité pure.",
+"gapLevel": "partial",
+"oralResponse": "Mon expérience en contrôle interne m'a amenée à auditer des processus comptables complexes, ce qui me donne la grille de lecture nécessaire."
+},
+{
+"requirement": "Appétence forte pour la partie SI et maîtrise parfaite des outils informatiques.",
+"proof": "Utilisation validée d'Excel, Power BI et de Google Workspace dans vos compétences.",
+"gap": "Aucun écart identifié.",
+"gapLevel": "none",
+"oralResponse": "Je maîtrise parfaitement Excel et Power BI, des outils que j'utilisais quotidiennement pour suivre nos indicateurs de performance et de risque."
+}
+],
+"scripts": [
+"Chez Carrefour Belgique, j'ai piloté 7 missions de contrôle interne fondées sur les risques, en évaluant l'efficacité des contrôles selon le référentiel COSO et en atteignant un taux de mise en œuvre des remédiations de 80%.",
+"J'ai également contribué à la mise en œuvre de la loi Sapin II lors de workshops inter-pays, une expérience directement transposable aux besoins actuels de renforcement d'Ortec."
+],
+"stars": [
+{
+"title": "Pilotage de missions COSO",
+"situation": "Au sein de Carrefour Belgique, il fallait évaluer l'efficacité des contrôles sur 15 départements.",
+"task": "Piloter 7 missions de contrôle interne fondées sur les risques.",
+"action": "J'ai mené des entretiens, réalisé des tests de contrôle, de l'échantillonnage et coordonné les exercices de RCSA.",
+"result": "Identification des faiblesses opérationnelles et atteinte d'un taux de mise en œuvre des plans de remédiation de 80%."
+}
+],
+"questions": [
+"Quels sont les principaux chantiers de contrôle interne prévus suite aux récentes acquisitions du groupe Ortec ?",
+"Comment s'organise la coordination entre la cellule Compliance et les équipes comptables du siège ?",
+"Quels sont les outils SI ou logiciels comptables actuellement utilisés au sein de votre cellule ?"
+],
+"checklist": [
+"Revoir les grands principes de la Loi Sapin II et du référentiel COSO.",
+"Préparer deux exemples concrets de contrôle de processus financiers (caisses, banques ou factures).",
+"Anticiper des questions techniques sur la méthodologie de réalisation d'un exercice RCSA."
+]
+},
+"final": {
+"risk": {
+"main": "Crainte que votre vision soit trop centrée sur l'exécution technique et pas assez alignée sur la stratégie de croissance du Directeur Général Adjoint.",
+"response": "Mon rôle a toujours été de lier la conformité opérationnelle à la maîtrise globale des risques pour soutenir la performance de l'entreprise."
+},
+"company": {
+"title": "La stratégie de croissance externe du Groupe Ortec",
+"points": [
+"Le groupe intègre régulièrement de nouvelles sociétés, ce qui nécessite une harmonisation rapide des processus.",
+"Le poste exige de savoir présenter de manière synthétique des conclusions à la Direction Générale.",
+"La compliance est perçue comme un levier d'amélioration continue et d'excellence opérationnelle."
+]
+},
+"evaluation": [
+"Votre capacité de synthèse face à la Direction Générale.",
+"Votre sens des affaires et votre compréhension des risques industriels.",
+"Votre posture professionnelle et votre force de proposition."
+],
+"realJob": {
+"reality": "Le rôle requiert de présenter les conclusions des audits de niveau 2 directement à la Responsable Compliance et au DG.",
+"constraint": "Il faut savoir traduire des faiblesses techniques en risques business compréhensibles pour l'exécutif.",
+"implication": "Vous devez faire preuve d'un excellent esprit de synthèse et d'une grande maturité managériale."
+},
+"hiddenEvaluation": {
+"question": "Comment vous assurez-vous que vos recommandations de contrôle interne sont bien appliquées par les équipes opérationnelles ?",
+"realTest": "Mesurer votre leadership d'influence et votre capacité à faire accepter le changement.",
+"badAnswer": "Je leur envoie le rapport d'audit par mail et j'attends qu'ils reviennent vers moi quand ils ont terminé la mise en œuvre.",
+"goodAnswer": "Je privilégie la co-construction des plans de remédiation avec les opérationnels pour m'assurer de leur faisabilité, ce qui explique mon taux de réussite de 80% chez Carrefour."
+},
+"perceptionRisks": {
+"risk": "Le DGA peut craindre un manque d'assurance lors des présentations de conclusions stratégiques.",
+"why": "Les conclusions d'audits doivent être défendues avec clarté et conviction.",
+"fix": "*Mon expérience en gestion de portefeuille de 200 PME chez HSBC m'a habituée à interagir avec des dirigeants et à soutenir mes analyses.*"
+},
+"scenario": {
+"situation": "Lors de la présentation de vos conclusions, un Directeur de filiale conteste la sévérité de votre constat d'audit.",
+"badPosture": "Se braquer ou modifier le rapport pour éviter le conflit avec un membre de la direction.",
+"goodPosture": "S'appuyer de manière factuelle sur les tests de contrôle réalisés tout en restant ouverte au dialogue opérationnel.",
+"line": "Je m'appuierai sur les données factuelles de nos tests de contrôle pour expliquer le niveau de risque identifié."
+},
+"requirements": [
+{
+"requirement": "Présenter les conclusions à la Responsable de la cellule Compliance et au Directeur Général.",
+"proof": "Production de rapports d'analyse pour les comités de crédit à la Société Générale et formulation de recommandations chez Carrefour.",
+"gap": "Pas d'expérience directe de présentation en direct face à un Directeur Général de groupe industriel.",
+"gapLevel": "partial",
+"oralResponse": "J'ai l'habitude de formaliser des notes de synthèse claires pour des comités de crédit et des instances de gouvernance."
+},
+{
+"requirement": "Savoir être force de proposition pour l'amélioration continue.",
+"proof": "Contribution à l'amélioration des processus opérationnels et suivi d'indicateurs de performance chez Carrefour.",
+"gap": "Aucun écart identifié.",
+"gapLevel": "none",
+"oralResponse": "Pour moi, le contrôle interne n'est pas qu'une fonction de constatation, c'est un outil d'amélioration continue pour l'organisation."
+}
+],
+"scripts": [
+"Ma démarche consiste à positionner le contrôle interne comme un partenaire de la croissance d'Ortec, en veillant à ce que l'intégration des nouvelles filiales se fasse de manière sécurisée et fluide.",
+"Grâce à mon parcours combinant rigueur bancaire et pragmatisme de la grande distribution, je sais formuler des recommandations réalistes et génératrices de valeur pour la direction générale."
+],
+"stars": [
+{
+"title": "Dispositif de contrôle interne et KYC",
+"situation": "Chez HSBC France, gestion d'un portefeuille d'environ 200 PME (CA de 5M€ à 50M€).",
+"task": "Identifier et remonter les anomalies dans le cadre des trois lignes de défense.",
+"action": "J'ai réalisé des contrôles KYC, CDD et EDD complexes et refusé les dossiers hors seuils de risque.",
+"result": "Protection de la banque contre les risques de conformité réglementaire (résultat à préciser en entretien)."
+}
+],
+"questions": [
+"Quelles sont vos attentes prioritaires vis-à-vis de la cellule Compliance pour soutenir les ambitions de croissance du groupe ?",
+"Comment mesurez-vous l'impact du contrôle interne sur la performance globale des filiales d'Ortec ?",
+"Quels sont les principaux défis stratégiques auxquels le groupe fait face en matière de conformité non financière ?"
+],
+"checklist": [
+"Travailler votre posture managériale et votre fluidité verbale.",
+"Préparer une synthèse de 2 minutes de votre parcours axée sur la valeur ajoutée pour un dirigeant.",
+"Passer en revue les actualités récentes d'Ortec pour comprendre leurs axes de croissance."
+]
+}
+}
 };
 
 const tabs = document.querySelectorAll('.tab');
@@ -1325,13 +1516,14 @@ const pathTitle = document.getElementById('pathTitle');
 const pathText = document.getElementById('pathText');
 const pathList = document.getElementById('pathList');
 const filterBar = document.getElementById('filter-bar');
+const entryState = document.getElementById('entryState');
 
 let current = null;
 let currentFilt = 'all';
 
 const pathCopy = {
   all:{
-    title:'Vue complète',
+    title:'Toutes les cartes',
     text:GUIDE_DATA.pathSummary.all,
     items:[
       ['#rh-risk','RH'],
@@ -1340,31 +1532,39 @@ const pathCopy = {
     ]
   },
   rh:{
-    title:'Parcours RH',
+    title:'Entretien RH',
     text:GUIDE_DATA.pathSummary.rh,
     items:[
       ['#rh-risk','Point sensible de l’entretien'],
       ['#rh-company',GUIDE_DATA.paths.rh.company.title],
-      ['#rh-eval','Ce que cet interlocuteur va évaluer'],
+      ['#rh-eval','Ce que votre interlocuteur cherche à mesurer'],
+      ['#rh-realjob','La réalité probable du poste'],
+      ['#rh-hidden','Ce qu’ils évaluent vraiment'],
+      ['#rh-perception','Le doute à désamorcer'],
+      ['#rh-scenario','Scénario d’entretien'],
       ['#rh-match','Exigences du poste : vos preuves et réponses'],
       ['#rh-scripts','Scripts essentiels'],
-      ['#rh-star','Exemples STAR à préparer'],
+      ['#rh-star','Récits STAR à construire'],
       ['#rh-questions','Questions à poser'],
-      ['#rh-checklist','Checklist finale']
+      ['#rh-checklist','Checklist de préparation']
     ]
   },
   manager:{
-    title:'Parcours Manager',
+    title:'Entretien Manager',
     text:GUIDE_DATA.pathSummary.manager,
     items:[
       ['#manager-risk','Point sensible de l’entretien'],
       ['#manager-company',GUIDE_DATA.paths.manager.company.title],
-      ['#manager-eval','Ce que cet interlocuteur va évaluer'],
+      ['#manager-eval','Ce que votre interlocuteur cherche à mesurer'],
+      ['#manager-realjob','La réalité probable du poste'],
+      ['#manager-hidden','Ce qu’ils évaluent vraiment'],
+      ['#manager-perception','Le doute à désamorcer'],
+      ['#manager-scenario','Scénario d’entretien'],
       ['#manager-match','Exigences du poste : vos preuves et réponses'],
       ['#manager-scripts','Scripts essentiels'],
-      ['#manager-star','Exemples STAR à préparer'],
+      ['#manager-star','Récits STAR à construire'],
       ['#manager-questions','Questions à poser'],
-      ['#manager-checklist','Checklist finale']
+      ['#manager-checklist','Checklist de préparation']
     ]
   },
   final:{
@@ -1373,12 +1573,16 @@ const pathCopy = {
     items:[
       ['#final-risk','Point sensible de l’entretien'],
       ['#final-company',GUIDE_DATA.paths.final.company.title],
-      ['#final-eval','Ce que cet interlocuteur va évaluer'],
+      ['#final-eval','Ce que votre interlocuteur cherche à mesurer'],
+      ['#final-realjob','La réalité probable du poste'],
+      ['#final-hidden','Ce qu’ils évaluent vraiment'],
+      ['#final-perception','Le doute à désamorcer'],
+      ['#final-scenario','Scénario d’entretien'],
       ['#final-match','Exigences du poste : vos preuves et réponses'],
       ['#final-scripts','Scripts essentiels'],
-      ['#final-star','Exemples STAR à préparer'],
+      ['#final-star','Récits STAR à construire'],
       ['#final-questions','Questions à poser'],
-      ['#final-checklist','Checklist finale']
+      ['#final-checklist','Checklist de préparation']
     ]
   }
 };
@@ -1387,14 +1591,30 @@ function getValue(path){
   return path.split('.').reduce((acc,key)=>acc && acc[key], GUIDE_DATA) ?? '';
 }
 
+function isPlaceholder(value){
+  return typeof value === 'string' && /\{\{[^}]+\}\}/.test(value);
+}
+
+function safeText(value){
+  if(value === null || value === undefined) return '';
+  if(typeof value !== 'string') return value;
+  const cleaned = value.trim();
+  if(!cleaned || isPlaceholder(cleaned)) return '';
+  return cleaned;
+}
+
+function safeArray(items){
+  return (items || []).map(safeText).filter(Boolean);
+}
+
 function setText(selector, value){
-  document.querySelectorAll(selector).forEach(el=>{el.textContent = value || '';});
+  document.querySelectorAll(selector).forEach(el=>{el.textContent = safeText(value);});
 }
 
 function renderList(selector, items){
   document.querySelectorAll(selector).forEach(list=>{
     list.textContent = '';
-    (items || []).filter(Boolean).forEach(item=>{
+    safeArray(items).forEach(item=>{
       const li = document.createElement('li');
       li.textContent = item;
       list.appendChild(li);
@@ -1405,7 +1625,7 @@ function renderList(selector, items){
 function renderChecklist(selector, items){
   document.querySelectorAll(selector).forEach(list=>{
     list.textContent = '';
-    (items || []).filter(Boolean).forEach(item=>{
+    safeArray(items).forEach(item=>{
       const li = document.createElement('li');
       const box = document.createElement('input');
       box.type = 'checkbox';
@@ -1419,7 +1639,7 @@ function renderChecklist(selector, items){
 function renderScripts(selector, scripts){
   document.querySelectorAll(selector).forEach(container=>{
     container.textContent = '';
-    (scripts || []).filter(Boolean).forEach(script=>{
+    safeArray(scripts).forEach(script=>{
       const div = document.createElement('div');
       div.className = 'script';
       div.textContent = '“' + script + '”';
@@ -1432,66 +1652,124 @@ function renderStars(selector, stars){
   document.querySelectorAll(selector).forEach(container=>{
     container.textContent = '';
     (stars || []).filter(Boolean).forEach((star,index)=>{
+      const titleValue = safeText(star.title);
+      const lines = ['situation','task','action','result'].map(key=>[key, safeText(star[key])]).filter(([,val])=>val);
+      if(!titleValue && !lines.length) return;
       const wrapper = document.createElement('div');
       wrapper.className = 'story';
-
       const title = document.createElement('h4');
-      title.textContent = `${index + 1}. ${star.title || ''}`;
+      title.textContent = `${index + 1}. ${titleValue || 'Récit à construire'}`;
       wrapper.appendChild(title);
-
-      ['situation','task','action','result'].forEach(key=>{
+      lines.forEach(([key,val])=>{
         const p = document.createElement('p');
         const strong = document.createElement('strong');
         strong.textContent = key.charAt(0).toUpperCase() + key.slice(1) + '.';
         p.appendChild(strong);
-        p.appendChild(document.createTextNode(' ' + (star[key] || '')));
+        p.appendChild(document.createTextNode(' ' + val));
         wrapper.appendChild(p);
       });
-
       container.appendChild(wrapper);
     });
+  });
+}
+
+function renderDecodeRows(container, rows){
+  container.textContent = '';
+  const wrapper = document.createElement('div');
+  wrapper.className = 'decode-block';
+  rows.map(row=>({...row, value:safeText(row.value)})).filter(row=>row.value).forEach(row=>{
+    const item = document.createElement('div');
+    item.className = 'decode-row';
+    const kicker = document.createElement('div');
+    kicker.className = 'decode-kicker';
+    kicker.textContent = row.label;
+    const text = document.createElement('div');
+    text.className = 'decode-text' + (row.className ? ' ' + row.className : '');
+    text.textContent = row.value;
+    item.appendChild(kicker);
+    item.appendChild(text);
+    wrapper.appendChild(item);
+  });
+  container.appendChild(wrapper);
+}
+
+function renderRealJob(selector, data){
+  document.querySelectorAll(selector).forEach(container=>{
+    if(!data) return;
+    renderDecodeRows(container, [
+      {label:'Réalité probable', value:data.reality},
+      {label:'Contrainte terrain', value:data.constraint},
+      {label:'Ce que cela implique pour vous', value:data.implication}
+    ]);
+  });
+}
+
+function renderHiddenEvaluation(selector, data){
+  document.querySelectorAll(selector).forEach(container=>{
+    if(!data) return;
+    renderDecodeRows(container, [
+      {label:'Question probable', value:data.question},
+      {label:'Ce qu’ils testent vraiment', value:data.realTest},
+      {label:'Mauvaise réponse typique', value:data.badAnswer, className:'bad-answer'},
+      {label:'Réponse crédible', value:data.goodAnswer, className:'good-answer'}
+    ]);
+  });
+}
+
+function renderPerception(selector, data){
+  document.querySelectorAll(selector).forEach(container=>{
+    if(!data) return;
+    renderDecodeRows(container, [
+      {label:'Doute possible', value:data.risk},
+      {label:'Pourquoi c’est dangereux', value:data.why},
+      {label:'Correction orale', value:data.fix, className:'script-line'}
+    ]);
+  });
+}
+
+function renderScenario(selector, data){
+  document.querySelectorAll(selector).forEach(container=>{
+    if(!data) return;
+    renderDecodeRows(container, [
+      {label:'Situation', value:data.situation},
+      {label:'Mauvaise posture', value:data.badPosture, className:'bad-answer'},
+      {label:'Bonne posture', value:data.goodPosture, className:'good-answer'},
+      {label:'Phrase à utiliser', value:data.line, className:'script-line'}
+    ]);
   });
 }
 
 function renderRequirements(selector, requirements){
   document.querySelectorAll(selector).forEach(container=>{
     container.textContent = '';
-
     (requirements || []).filter(Boolean).forEach((req,index)=>{
+      const requirement = safeText(req.requirement);
+      const proof = safeText(req.proof);
+      const gap = safeText(req.gap);
+      const oralResponse = safeText(req.oralResponse);
+      if(!requirement && !proof && !gap && !oralResponse) return;
       const details = document.createElement('details');
       details.className = 'exigence';
       if(index === 0) details.open = true;
-
       const summary = document.createElement('summary');
       summary.className = 'exigence-summary';
-
       const reqTitle = document.createElement('span');
-      reqTitle.textContent = req.requirement || '';
-
+      reqTitle.textContent = requirement || 'Exigence à préciser';
       const chevron = document.createElement('span');
       chevron.className = 'exigence-chevron';
       chevron.textContent = '▾';
-
       summary.appendChild(reqTitle);
       summary.appendChild(chevron);
-
       const body = document.createElement('div');
       body.className = 'exigence-body';
-
-      [
-        ['Preuve', req.proof || ''],
-        ['Gap', req.gap || '', req.gapLevel || 'partial']
-      ].forEach(([key,val,level])=>{
+      [['Preuve', proof], ['Gap', gap, req.gapLevel || 'partial']].filter(([,val])=>val).forEach(([key,val,level])=>{
         const row = document.createElement('div');
         row.className = 'exigence-row';
-
         const k = document.createElement('div');
         k.className = 'exigence-key';
         k.textContent = key;
-
         const v = document.createElement('div');
         v.className = 'exigence-val';
-
         if(key === 'Gap'){
           const span = document.createElement('span');
           span.className = `exigence-gap-${level}`;
@@ -1500,17 +1778,16 @@ function renderRequirements(selector, requirements){
         } else {
           v.textContent = val;
         }
-
         row.appendChild(k);
         row.appendChild(v);
         body.appendChild(row);
       });
-
-      const oral = document.createElement('div');
-      oral.className = 'exigence-oral';
-      oral.textContent = '“' + (req.oralResponse || '') + '”';
-      body.appendChild(oral);
-
+      if(oralResponse){
+        const oral = document.createElement('div');
+        oral.className = 'exigence-oral';
+        oral.textContent = '“' + oralResponse + '”';
+        body.appendChild(oral);
+      }
       details.appendChild(summary);
       details.appendChild(body);
       container.appendChild(details);
@@ -1518,9 +1795,21 @@ function renderRequirements(selector, requirements){
   });
 }
 
+function dynamicContentFor(card){
+  const dynamicSelectors = '[data-field], [data-list], [data-checklist], [data-scripts], [data-stars], [data-requirements], [data-realjob], [data-hidden-eval], [data-perception], [data-scenario]';
+  return Array.from(card.querySelectorAll(dynamicSelectors)).map(el=>el.textContent.replace(/\s+/g,' ').trim()).filter(Boolean).join(' ');
+}
+
+function markEmptyCards(){
+  document.querySelectorAll('.card[data-track]').forEach(card=>{
+    const content = dynamicContentFor(card);
+    if(content.length < 3) card.classList.add('empty-card','hidden');
+  });
+}
+
 function hydrate(){
   document.querySelectorAll('[data-field]').forEach(el=>{
-    el.textContent = getValue(el.dataset.field);
+    el.textContent = safeText(getValue(el.dataset.field));
   });
 
   renderList('[data-list="priorities"]', GUIDE_DATA.priorities);
@@ -1529,6 +1818,10 @@ function hydrate(){
   ['rh','manager','final'].forEach(path=>{
     renderList(`[data-list="paths.${path}.company.points"]`, GUIDE_DATA.paths[path].company.points);
     renderList(`[data-list="paths.${path}.evaluation"]`, GUIDE_DATA.paths[path].evaluation);
+    renderRealJob(`[data-realjob="paths.${path}.realJob"]`, GUIDE_DATA.paths[path].realJob);
+    renderHiddenEvaluation(`[data-hidden-eval="paths.${path}.hiddenEvaluation"]`, GUIDE_DATA.paths[path].hiddenEvaluation);
+    renderPerception(`[data-perception="paths.${path}.perceptionRisks"]`, GUIDE_DATA.paths[path].perceptionRisks);
+    renderScenario(`[data-scenario="paths.${path}.scenario"]`, GUIDE_DATA.paths[path].scenario);
     renderRequirements(`[data-requirements="paths.${path}.requirements"]`, GUIDE_DATA.paths[path].requirements);
     renderScripts(`[data-scripts="paths.${path}.scripts"]`, GUIDE_DATA.paths[path].scripts);
     renderStars(`[data-stars="paths.${path}.stars"]`, GUIDE_DATA.paths[path].stars);
@@ -1541,6 +1834,7 @@ function visibleCards(){
   return Array.from(cards).filter(card=>
     (current === 'all' || card.dataset.track === current) &&
     !card.classList.contains('hidden') &&
+    !card.classList.contains('empty-card') &&
     !card.dataset.context
   );
 }
@@ -1552,6 +1846,10 @@ function applyFilt(){
   }
 
   cards.forEach(card=>{
+    if(card.classList.contains('empty-card')){
+      card.classList.add('hidden');
+      return;
+    }
     const inTrack = current === 'all' || card.dataset.track === current;
     if(!inTrack){
       card.classList.add('hidden');
@@ -1580,6 +1878,7 @@ function updateProgress(){
 
   const essentialVisible = Array.from(cards).filter(card=>
     (current === 'all' || card.dataset.track === current) &&
+    !card.classList.contains('empty-card') &&
     !card.dataset.context &&
     card.querySelector('.badge.essential')
   );
@@ -1598,16 +1897,24 @@ function updateProgress(){
   });
 }
 
+function getPathItems(filter){
+  if(filter === 'all'){
+    return [['#rh-risk','RH'], ['#manager-risk','Manager opérationnel'], ['#final-risk','Final round']];
+  }
+  return Array.from(document.querySelectorAll(`.card[data-track="${filter}"]`))
+    .filter(card=>!card.classList.contains('empty-card'))
+    .map(card=>[`#${card.id}`, card.querySelector('h3') ? card.querySelector('h3').textContent.trim() : 'Section'])
+    .filter(([,label])=>label);
+}
+
 function updateSummary(filter){
   if(filter === null) return;
-
   const data = pathCopy[filter];
-  pathTitle.textContent = data.title;
-  pathText.textContent = data.text;
+  pathTitle.textContent = safeText(data.title);
+  pathText.textContent = safeText(data.text);
   pathList.classList.toggle('round-list', filter === 'all');
   pathList.textContent = '';
-
-  data.items.forEach(([href,label])=>{
+  getPathItems(filter).forEach(([href,label])=>{
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.href = href;
@@ -1626,16 +1933,20 @@ function setFilter(filter){
     cards.forEach(card=>card.classList.add('hidden'));
     if(pathSummary) pathSummary.style.display = 'none';
     if(filterBar) filterBar.style.display = 'none';
-    activeLabel.textContent = 'Aucun parcours sélectionné';
+    document.getElementById('cards').style.display = 'none';
+    if(entryState) entryState.style.display = 'block';
+    activeLabel.textContent = "Choisissez un type d'entretien pour commencer";
     updateProgress();
     return;
   }
 
-  if(pathSummary) pathSummary.style.display = filter === 'all' ? 'grid' : 'none';
+  if(entryState) entryState.style.display = 'none';
+  if(pathSummary) pathSummary.style.display = 'grid';
   if(filterBar) filterBar.style.display = 'flex';
+    document.getElementById('cards').style.display = '';
 
   cards.forEach(card=>{
-    const show = filter === 'all' || card.dataset.track === filter;
+    const show = !card.classList.contains('empty-card') && (filter === 'all' || card.dataset.track === filter);
     card.classList.toggle('hidden', !show);
   });
 
@@ -1666,8 +1977,40 @@ cards.forEach(card=>{
   });
 });
 
+
+function initNotesPersistence(){
+  document.querySelectorAll('textarea').forEach(field=>{
+    const key = `prepframe-note-${field.id}`;
+    const saved = localStorage.getItem(key);
+    if(saved) field.value = saved;
+    field.addEventListener('input',()=>localStorage.setItem(key, field.value));
+  });
+}
+
+function initPdfExport(){
+  const pdfBtn = document.getElementById('downloadPdfBtn');
+  if(!pdfBtn) return;
+  pdfBtn.addEventListener('click', async ()=>{
+    setFilter('all');
+    document.querySelectorAll('details').forEach(detail=>{ detail.open = true; });
+    document.body.classList.add('pdf-mode');
+    const element = document.querySelector('.page');
+    const filenameParts = [safeText(GUIDE_DATA.meta.company), safeText(GUIDE_DATA.meta.role)].filter(Boolean).join(' - ').replace(/[\/:*?"<>|]/g,'') || 'prepframe-guide';
+    const opt = { margin:0.35, filename:'Guide-de-preparation.pdf', image:{type:'jpeg',quality:0.98}, html2canvas:{scale:2,useCORS:true,backgroundColor:'#F5F1EA'}, jsPDF:{unit:'in',format:'a4',orientation:'portrait'}, pagebreak:{mode:['avoid-all','css','legacy']} };
+    try{
+      if(window.html2pdf) await html2pdf().set(opt).from(element).save();
+      else window.print();
+    } finally {
+      document.body.classList.remove('pdf-mode');
+    }
+  });
+}
+
 hydrate();
+markEmptyCards();
+initNotesPersistence();
+initPdfExport();
 setFilter(null);
 </script>
-
-
+</body>
+</html>
